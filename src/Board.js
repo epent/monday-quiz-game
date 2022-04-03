@@ -3,47 +3,50 @@ var he = require("he");
 
 const Board = () => {
   const [gameData, setGameData] = useState(null);
+  const [questionCount, setQuestionCount] = useState(0);
 
   useEffect(() => {
     fetch("/.netlify/functions/game-data")
       .then((response) => response.json())
       .then((data) => {
-        console.log(he.decode(data.results[0].question));
-        console.log(data.results);
-        setGameData(data.results);
+        console.log(data.results.slice(0, 10));
+        setGameData(data.results.slice(0, 10));
+        console.log(questionCount);
       });
   }, []);
 
-  let question;
+  let questionData = {
+    question: "",
+    answer1: "",
+    answer2: "",
+    answer3: "",
+    answer4: "",
+  };
   if (gameData) {
-    question = he.decode(gameData[0].question);
+    questionData = {
+      question: he.decode(gameData[questionCount].question),
+      answer1: he.decode(gameData[questionCount].correct_answer),
+      answer2: he.decode(gameData[questionCount].incorrect_answers[0]),
+      answer3: gameData[questionCount].incorrect_answers[1]
+        ? he.decode(gameData[questionCount].incorrect_answers[1])
+        : null,
+      answer4: gameData[questionCount].incorrect_answers[2]
+        ? he.decode(gameData[questionCount].incorrect_answers[2])
+        : null,
+    };
   }
 
-  let answer1;
-  if (gameData) {
-    answer1 = he.decode(gameData[0].correct_answer);
-  }
-
-  let answer2;
-  if (gameData) {
-    answer2 = he.decode(gameData[0].incorrect_answers[0]);
-  }
-  let answer3;
-  if (gameData && gameData[0].incorrect_answers[1]) {
-    answer3 = he.decode(gameData[0].incorrect_answers[1]);
-  }
-  let answer4;
-  if (gameData && gameData[0].incorrect_answers[2]) {
-    answer4 = he.decode(gameData[0].incorrect_answers[2]);
-  }
+  const updateQuestionHandler = () => {
+    setQuestionCount((prevState) => prevState + 1);
+  };
 
   return (
     <div>
-      <p>{question}</p>
-      <p>Answer 1: {answer1}</p>
-      <p>Answer 2: {answer2}</p>
-      <p>Answer 3: {answer3}</p>
-      <p>Answer 4: {answer4}</p>
+      <p>{questionData.question}</p>
+      <button onClick={updateQuestionHandler}>{questionData.answer1}</button>
+      <button>{questionData.answer2}</button>
+      <button>{questionData.answer3}</button>
+      <button>{questionData.answer4}</button>
     </div>
   );
 };
