@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Game from "./Game";
 import Result from "./Result";
+import Timer from "./Timer";
 
 const NUMBER_OF_QUESTIONS = 10;
 
@@ -30,6 +31,7 @@ const Board = () => {
       {questionCount === NUMBER_OF_QUESTIONS && (
         <Result totalAnswers={totalAnswers} correctAnswers={correctAnswers} />
       )}
+      <Timer startTimer={questionCount} />
     </div>
   );
 };
