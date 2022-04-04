@@ -14,12 +14,15 @@ const Board = () => {
   const [totalAnswers, setTotalAnswers] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
+  const [showNextButton, setShowNextButton] = useState(false);
+
   const updateQuestionHandler = (isCorrect) => {
     if (isCorrect) {
       setCorrectAnswers((prevState) => prevState + 1);
     }
     setTotalAnswers((prevState) => prevState + 1);
     setQuestionCount((prevState) => prevState + 1);
+    setShowNextButton(false);
   };
 
   const game = (
@@ -27,13 +30,14 @@ const Board = () => {
       <Game
         questionCount={questionCount}
         updateQuestionHandler={updateQuestionHandler}
+        showNextButton={showNextButton}
       />
     </Grid>
   );
 
   const timer = (
     <Grid item>
-      <Timer startTimer={questionCount} />
+      <Timer startTimer={questionCount} setShowNextButton={setShowNextButton} />
     </Grid>
   );
 

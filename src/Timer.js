@@ -37,6 +37,7 @@ const Timer = (props) => {
     if (countDown < 0 && runTimer) {
       setRunTimer(false);
       setCountDown(0);
+      props.setShowNextButton(true);
     }
   }, [countDown, runTimer]);
 

@@ -73,6 +73,16 @@ const Game = (props) => {
     );
   });
 
+  const nextButton = (
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={props.updateQuestionHandler}
+    >
+      next
+    </Button>
+  );
+
   return (
     <Paper elevation={3} className={classes.paper}>
       <Box
@@ -93,7 +103,7 @@ const Game = (props) => {
           display="flex"
           justifyContent="center"
         >
-          {answerButtons}
+          {props.showNextButton ? nextButton : answerButtons}
         </Box>
       </Box>
     </Paper>
