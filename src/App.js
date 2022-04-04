@@ -1,46 +1,46 @@
-import React, { Component } from "react";
+import React from "react";
 
-class LambdaDemo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false, msg: null };
-  }
+import { createTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Toolbar from "@material-ui/core/Toolbar";
 
-  handleClick = (api) => (e) => {
-    e.preventDefault();
+import Appbar from "./Appbar";
+import Board from "./Board";
 
-    this.setState({ loading: true });
-    fetch("/.netlify/functions/" + api)
-      .then((response) => response.json())
-      .then((json) => this.setState({ loading: false, msg: json.msg }));
-  };
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#80deea",
+      main: "#00bcd4",
+      dark: "#00838f",
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      light: "#33bfff",
+      main: "#00b0ff",
+      dark: "#007bb2",
+    },
+  },
+});
 
-  render() {
-    const { loading, msg } = this.state;
-
-    return (
-      <p>
-        <button onClick={this.handleClick("hello")}>
-          {loading ? "Loading..." : "Call Lambda"}
-        </button>
-        <button onClick={this.handleClick("async-dadjoke")}>
-          {loading ? "Loading..." : "Call Async Lambda"}
-        </button>
-        <br />
-        <span>{msg}</span>
-      </p>
-    );
-  }
-}
-
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <LambdaDemo />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid container>
+        <Grid item>
+          <Appbar />
+        </Grid>
+        <Grid item>
+          <Toolbar />
+          <Box m={3}>
+            <Board />
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
 }
 
 export default App;
