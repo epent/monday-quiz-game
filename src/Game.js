@@ -1,9 +1,28 @@
 import React, { useState, useEffect } from "react";
 import he from "he";
 
+import { Typography, Button, Paper, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 const NUMBER_OF_QUESTIONS = 10;
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  paper: {
+    backgroundColor: "#fafafa",
+    borderRadius: 10,
+    width: "1000px",
+    height: "300px",
+  },
+}));
+
 const Game = (props) => {
+  const classes = useStyles();
+
   const [gameData, setGameData] = useState(null);
 
   useEffect(() => {
@@ -39,7 +58,10 @@ const Game = (props) => {
 
   const answerButtons = questionData.answers.map((answer) => {
     return (
-      <button
+      <Button
+        key={answer}
+        variant="contained"
+        color="primary"
         onClick={() =>
           props.updateQuestionHandler(
             answer === he.decode(gameData[props.questionCount].correct_answer)
@@ -47,15 +69,34 @@ const Game = (props) => {
         }
       >
         {answer}
-      </button>
+      </Button>
     );
   });
 
   return (
-    <div>
-      <p>{questionData.question}</p>
-      {answerButtons}
-    </div>
+    <Paper elevation={3} className={classes.paper}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ height: 300 }}
+      >
+        <Box p={3} mx={5}>
+          <Typography variant="h4" align="center" gutterBottom>
+            {questionData.question}
+          </Typography>
+        </Box>
+        <Box
+          p={3}
+          className={classes.button}
+          display="flex"
+          justifyContent="center"
+        >
+          {answerButtons}
+        </Box>
+      </Box>
+    </Paper>
   );
 };
 
