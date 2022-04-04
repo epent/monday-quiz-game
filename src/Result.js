@@ -15,6 +15,59 @@ const useStyles = makeStyles((theme) => ({
 const Result = (props) => {
   const classes = useStyles();
 
+  let text;
+  if (props.correctAnswers / props.totalAnswers < 0.5) {
+    text = (
+      <Box>
+        <Typography variant="h4" align="center">
+          It's OK!
+        </Typography>
+        <Typography variant="h4" align="center">
+          You answered correctly {props.correctAnswers} questions out of
+          {props.totalAnswers}.
+        </Typography>
+        <Typography variant="h4" align="center">
+          May be it was a bad luck. Wanna try once more?
+        </Typography>
+      </Box>
+    );
+  }
+  if (
+    props.correctAnswers / props.totalAnswers >= 0.8 &&
+    props.correctAnswers / props.totalAnswers < 1
+  ) {
+    text = (
+      <Box>
+        <Typography variant="h4" align="center">
+          Not bad!
+        </Typography>
+        <Typography variant="h4" align="center">
+          You answered correctly {props.correctAnswers} questions out of
+          {props.totalAnswers}.
+        </Typography>
+        <Typography variant="h4" align="center">
+          Congratulations! Wanna try once more?
+        </Typography>
+      </Box>
+    );
+  }
+  if (props.correctAnswers / props.totalAnswers === 1) {
+    text = (
+      <Box>
+        <Typography variant="h4" align="center">
+          Wow! Look, someone smart is here!
+        </Typography>
+        <Typography variant="h4" align="center">
+          You answered correctly {props.correctAnswers} questions out of
+          {props.totalAnswers}.
+        </Typography>
+        <Typography variant="h4" align="center">
+          Congratulations! Wanna try once more?
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Paper elevation={3} className={classes.paper}>
       <Box
@@ -24,11 +77,8 @@ const Result = (props) => {
         alignItems="center"
         sx={{ height: 300 }}
       >
-        <Box p={3}>
-          <Typography variant="h5">
-            You answered correctly {props.correctAnswers} questions out of{" "}
-            {props.totalAnswers}.
-          </Typography>
+        <Box p={3} mx={5}>
+          {text}
         </Box>
         <Box p={3}>
           <Button
