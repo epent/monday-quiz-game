@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import Grid from "@material-ui/core/Grid";
+
 import Game from "./Game";
 import Result from "./Result";
 import Timer from "./Timer";
@@ -20,19 +22,29 @@ const Board = () => {
     setQuestionCount((prevState) => prevState + 1);
   };
 
+  const game = (
+    <Grid item>
+      <Game
+        questionCount={questionCount}
+        updateQuestionHandler={updateQuestionHandler}
+      />
+    </Grid>
+  );
+
+  const timer = (
+    <Grid item>
+      <Timer startTimer={questionCount} />
+    </Grid>
+  );
+
   return (
-    <div>
-      {questionCount !== NUMBER_OF_QUESTIONS && (
-        <Game
-          questionCount={questionCount}
-          updateQuestionHandler={updateQuestionHandler}
-        />
-      )}
+    <Grid container spacing={3}>
+      {questionCount !== NUMBER_OF_QUESTIONS && game}
+      {questionCount !== NUMBER_OF_QUESTIONS && timer}
       {questionCount === NUMBER_OF_QUESTIONS && (
         <Result totalAnswers={totalAnswers} correctAnswers={correctAnswers} />
       )}
-      <Timer startTimer={questionCount} />
-    </div>
+    </Grid>
   );
 };
 
