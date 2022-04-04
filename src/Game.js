@@ -77,7 +77,7 @@ const Game = (props) => {
     <Button
       variant="contained"
       color="primary"
-      onClick={props.updateQuestionHandler}
+      onClick={() => props.updateQuestionHandler(false)}
     >
       next
     </Button>
