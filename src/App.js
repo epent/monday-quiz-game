@@ -30,17 +30,33 @@ const theme = createTheme({
 });
 
 function App() {
-  const [results, setResults] = useState({
-    totalAnswers: 0,
-    correctAnswers: 0,
-  });
+  const [totalAnswers, setTotalAnswers] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   const routes = (
     <Routes>
       <Route path="/" element={<Welcome />} />
       <Route path="/start" element={<Start />} />
-      <Route path="/game/:categoryName" element={<Board setResults={setResults} />} />
-      <Route path="/result" element={<Result results={results} />} />
+      <Route
+        path="/game/:categoryName"
+        element={
+          <Board
+            setTotalAnswers={setTotalAnswers}
+            setCorrectAnswers={setCorrectAnswers}
+          />
+        }
+      />
+      <Route
+        path="/result"
+        element={
+          <Result
+            totalAnswers={totalAnswers}
+            correctAnswers={correctAnswers}
+            setTotalAnswers={setTotalAnswers}
+            setCorrectAnswers={setCorrectAnswers}
+          />
+        }
+      />
     </Routes>
   );
 

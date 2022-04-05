@@ -19,15 +19,15 @@ const Result = (props) => {
   let navigate = useNavigate();
 
   let text;
-  if (props.results.correctAnswers / props.results.totalAnswers < 0.5) {
+  if (props.correctAnswers / props.totalAnswers < 0.5) {
     text = (
       <Box>
         <Typography variant="h4" align="center">
           It's OK!
         </Typography>
         <Typography variant="h4" align="center">
-          You answered correctly {props.results.correctAnswers} questions out of{" "}
-          {props.results.totalAnswers}.
+          You answered correctly {props.correctAnswers} questions out of{" "}
+          {props.totalAnswers}.
         </Typography>
         <Typography variant="h4" align="center">
           May be it was a bad luck. Wanna try once more?
@@ -36,8 +36,8 @@ const Result = (props) => {
     );
   }
   if (
-    props.results.correctAnswers / props.results.totalAnswers >= 0.8 &&
-    props.results.correctAnswers / props.results.totalAnswers < 1
+    props.correctAnswers / props.totalAnswers >= 0.8 &&
+    props.correctAnswers / props.totalAnswers < 1
   ) {
     text = (
       <Box>
@@ -45,8 +45,8 @@ const Result = (props) => {
           Not bad!
         </Typography>
         <Typography variant="h4" align="center">
-          You answered correctly {props.results.correctAnswers} questions out of{" "}
-          {props.results.totalAnswers}.
+          You answered correctly {props.correctAnswers} questions out of{" "}
+          {props.totalAnswers}.
         </Typography>
         <Typography variant="h4" align="center">
           Congratulations! Wanna try once more?
@@ -54,15 +54,15 @@ const Result = (props) => {
       </Box>
     );
   }
-  if (props.results.correctAnswers / props.results.totalAnswers === 1) {
+  if (props.correctAnswers / props.totalAnswers === 1) {
     text = (
       <Box>
         <Typography variant="h4" align="center">
           Wow! Look, someone smart is here!
         </Typography>
         <Typography variant="h4" align="center">
-          You answered correctly {props.results.correctAnswers} questions out of{" "}
-          {props.results.totalAnswers}.
+          You answered correctly {props.correctAnswers} questions out of{" "}
+          {props.totalAnswers}.
         </Typography>
         <Typography variant="h4" align="center">
           Congratulations! Wanna try once more?
@@ -90,6 +90,8 @@ const Result = (props) => {
               color="primary"
               size="large"
               onClick={() => {
+                props.setTotalAnswers(0);
+                props.setCorrectAnswers(0);
                 navigate("/start");
               }}
             >
@@ -102,6 +104,8 @@ const Result = (props) => {
               color="default"
               size="large"
               onClick={() => {
+                props.setTotalAnswers(0);
+                props.setCorrectAnswers(0);
                 localStorage.removeItem("playerName");
                 navigate("/");
               }}
