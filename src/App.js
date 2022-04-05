@@ -64,7 +64,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <Grid container>
         <Grid item>
-          <Appbar />
+          <Appbar
+            setTotalAnswers={setTotalAnswers}
+            setCorrectAnswers={setCorrectAnswers}
+          />
         </Grid>
         <Grid item>
           <Toolbar />

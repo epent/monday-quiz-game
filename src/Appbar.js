@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Appbar = () => {
+const Appbar = (props) => {
   const classes = useStyles();
 
   let navigate = useNavigate();
@@ -32,6 +32,8 @@ const Appbar = () => {
             color="textPrimary"
             variant="h6"
             onClick={() => {
+              props.setTotalAnswers(0);
+              props.setCorrectAnswers(0);
               localStorage.removeItem("playerName");
               navigate("/");
             }}
