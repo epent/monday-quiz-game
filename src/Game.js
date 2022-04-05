@@ -43,7 +43,7 @@ const Game = (props) => {
     };
 
     fetchData();
-  }, []);
+  }, [params.categoryName]);
 
   const questionData = {
     question: "",
