@@ -36,8 +36,10 @@ const Welcome = (props) => {
   const submitNameHandler = (event) => {
     event.preventDefault();
 
-    localStorage.setItem("playerName", name);
-    navigate("/start");
+    if (name.length > 0) {
+      localStorage.setItem("playerName", name);
+      navigate("/start");
+    }
   };
 
   const form = (
@@ -56,6 +58,7 @@ const Welcome = (props) => {
             color="primary"
             onClick={submitNameHandler}
             className={classes.button}
+            disabled={name.length === 0 ? true : false}
           >
             submit
           </Button>
