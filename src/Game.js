@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import he from "he";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 import { Typography, Button, Paper, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,13 +27,29 @@ const Game = (props) => {
 
   const [gameData, setGameData] = useState(null);
 
+  const categories = {
+    "General Knowledge": 9,
+    Mathematics: 19,
+    "Video Games": 15,
+    Books: 10,
+    Film: 11,
+    Music: 12,
+    Sports: 21,
+    Geography: 22,
+    History: 23,
+  };
+  const params = useParams();
+
   useEffect(() => {
-    fetch("/.netlify/functions/game-data")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.results.slice(0, NUMBER_OF_QUESTIONS));
-        setGameData(data.results.slice(0, NUMBER_OF_QUESTIONS));
-      });
+    const fetchData = async () => {
+      const response = await axios.get(`https://opentdb.com/api.php?amount=10&category=${categories[params.categoryName]}`);
+      const data = response.data.results;
+
+      setGameData(data);
+      console.log(data);
+    };
+
+    fetchData();
   }, []);
 
   const questionData = {

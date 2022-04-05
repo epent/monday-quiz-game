@@ -39,7 +39,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Welcome />} />
       <Route path="/start" element={<Start />} />
-      <Route path="/game" element={<Board setResults={setResults} />} />
+      <Route path="/game/:categoryName" element={<Board setResults={setResults} />} />
       <Route path="/result" element={<Result results={results} />} />
     </Routes>
   );

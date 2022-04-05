@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Typography, Button, Paper, Box } from "@material-ui/core";
@@ -25,29 +25,33 @@ const useStyles = makeStyles((theme) => ({
 const Start = (props) => {
   const classes = useStyles();
 
+  const [category, setCategory] = useState("");
+
   let navigate = useNavigate();
 
-  const categories1 = [
-    "General Knowledge",
-    "Science: Mathematics",
-    "Entertainment: Video Games",
-  ].map((category) => {
+  const categories1 = ["General Knowledge", "Mathematics", "Video Games"].map(
+    (category) => {
+      return (
+        <Box key={category}>
+          <Button
+            size="large"
+            color="primary"
+            onClick={() => setCategory(category)}
+          >
+            {category}
+          </Button>
+        </Box>
+      );
+    }
+  );
+  const categories2 = ["Books", "Film", "Music"].map((category) => {
     return (
       <Box key={category}>
-        <Button size="large" color="primary">
-          {category}
-        </Button>
-      </Box>
-    );
-  });
-  const categories2 = [
-    "Entertainment: Books",
-    "Entertainment: Film",
-    "Entertainment: Music",
-  ].map((category) => {
-    return (
-      <Box key={category}>
-        <Button size="large" color="primary">
+        <Button
+          size="large"
+          color="primary"
+          onClick={() => setCategory(category)}
+        >
           {category}
         </Button>
       </Box>
@@ -56,7 +60,11 @@ const Start = (props) => {
   const categories3 = ["Sports", "Geography", "History"].map((category) => {
     return (
       <Box key={category}>
-        <Button size="large" color="primary">
+        <Button
+          size="large"
+          color="primary"
+          onClick={() => setCategory(category)}
+        >
           {category}
         </Button>
       </Box>
@@ -87,7 +95,7 @@ const Start = (props) => {
             variant="contained"
             color="primary"
             onClick={() => {
-              navigate("/game");
+              navigate(`/game/${category}`);
             }}
             className={classes.button}
           >
