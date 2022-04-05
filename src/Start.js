@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Start = (props) => {
   const classes = useStyles();
 
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(null);
 
   let navigate = useNavigate();
 
@@ -70,6 +70,7 @@ const Start = (props) => {
               navigate(`/game/${category}`);
             }}
             className={classes.button}
+            disabled={category ? false : true}
           >
             start
           </Button>
