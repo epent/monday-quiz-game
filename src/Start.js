@@ -30,42 +30,42 @@ const Start = (props) => {
   let navigate = useNavigate();
 
   const categories1 = ["General Knowledge", "Mathematics", "Video Games"].map(
-    (category) => {
+    (cat) => {
       return (
-        <Box key={category}>
+        <Box key={cat}>
           <Button
             size="large"
-            color="primary"
-            onClick={() => setCategory(category)}
+            color={category === cat ? "secondary" : "primary"}
+            onClick={() => setCategory(cat)}
           >
-            {category}
+            {cat}
           </Button>
         </Box>
       );
     }
   );
-  const categories2 = ["Books", "Film", "Music"].map((category) => {
+  const categories2 = ["Books", "Film", "Music"].map((cat) => {
     return (
-      <Box key={category}>
+      <Box key={cat}>
         <Button
           size="large"
-          color="primary"
-          onClick={() => setCategory(category)}
+          color={category === cat ? "secondary" : "primary"}
+          onClick={() => setCategory(cat)}
         >
-          {category}
+          {cat}
         </Button>
       </Box>
     );
   });
-  const categories3 = ["Sports", "Geography", "History"].map((category) => {
+  const categories3 = ["Sports", "Geography", "History"].map((cat) => {
     return (
-      <Box key={category}>
+      <Box key={cat}>
         <Button
           size="large"
-          color="primary"
-          onClick={() => setCategory(category)}
+          color={category === cat ? "secondary" : "primary"}
+          onClick={() => setCategory(cat)}
         >
-          {category}
+          {cat}
         </Button>
       </Box>
     );
