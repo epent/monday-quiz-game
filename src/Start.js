@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fafafa",
     borderRadius: 10,
     width: "1000px",
+    height: "700px",
   },
   box: {
     display: "flex",
@@ -29,53 +30,34 @@ const Start = (props) => {
 
   let navigate = useNavigate();
 
-  const categories1 = ["General Knowledge", "Mathematics", "Video Games"].map(
-    (cat) => {
-      return (
-        <Box key={cat}>
-          <Button
-            size="large"
-            color={category === cat ? "secondary" : "primary"}
-            onClick={() => setCategory(cat)}
-          >
-            {cat}
-          </Button>
-        </Box>
-      );
-    }
-  );
-  const categories2 = ["Books", "Film", "Music"].map((cat) => {
+  const categories = [
+    "General Knowledge",
+    "Mathematics",
+    "Video Games",
+    "Books",
+    "Film",
+    "Music",
+    "Sports",
+    "Geography",
+    "History",
+  ].map((cat) => {
     return (
-      <Box key={cat}>
-        <Button
-          size="large"
-          color={category === cat ? "secondary" : "primary"}
-          onClick={() => setCategory(cat)}
-        >
-          {cat}
-        </Button>
-      </Box>
-    );
-  });
-  const categories3 = ["Sports", "Geography", "History"].map((cat) => {
-    return (
-      <Box key={cat}>
-        <Button
-          size="large"
-          color={category === cat ? "secondary" : "primary"}
-          onClick={() => setCategory(cat)}
-        >
-          {cat}
-        </Button>
-      </Box>
+      <Button
+        key={cat}
+        size="large"
+        color={category === cat ? "secondary" : "primary"}
+        onClick={() => setCategory(cat)}
+      >
+        {cat}
+      </Button>
     );
   });
 
   const playerName = localStorage.getItem("playerName");
 
   return (
-    <Paper elevation={3} className={classes.paper} sx={{ height: 500 }}>
-      <Box className={classes.box} flexDirection="column" sx={{ height: 500 }}>
+    <Paper elevation={3} className={classes.paper}>
+      <Box className={classes.box} flexDirection="column" sx={{ height: 700 }}>
         <Box p={3}>
           <Typography variant="h4" align="center" gutterBottom>
             {playerName}, choose category and press{" "}
@@ -85,10 +67,8 @@ const Start = (props) => {
             to play the game.
           </Typography>
         </Box>
-        <Box p={3} display="flex">
-          <Box p={3}>{categories1}</Box>
-          <Box p={3}>{categories2}</Box>
-          <Box p={3}>{categories3}</Box>
+        <Box p={3} display="flex" flexDirection="column">
+          {categories}
         </Box>
         <Box p={3}>
           <Button
