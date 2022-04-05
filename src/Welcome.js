@@ -36,6 +36,7 @@ const Welcome = (props) => {
   const submitNameHandler = (event) => {
     event.preventDefault();
 
+    localStorage.setItem("playerName", name);
     navigate("/start");
   };
 

@@ -63,12 +63,14 @@ const Start = (props) => {
     );
   });
 
+  const playerName = localStorage.getItem("playerName");
+
   return (
     <Paper elevation={3} className={classes.paper} sx={{ height: 500 }}>
       <Box className={classes.box} flexDirection="column" sx={{ height: 500 }}>
         <Box p={3}>
           <Typography variant="h4" align="center" gutterBottom>
-            Hi, ""! Choose category and press{" "}
+            {playerName}, choose category and press{" "}
             <Box component="span" variant="h4" color="primary.main">
               START
             </Box>{" "}
