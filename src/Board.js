@@ -5,8 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Game from "./Game";
 import Timer from "./Timer";
-
-const NUMBER_OF_QUESTIONS = 10;
+import { NUMBER_OF_QUESTIONS } from "./utils/utils";
 
 const Board = (props) => {
   const [questionCount, setQuestionCount] = useState(0);

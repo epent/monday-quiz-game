@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Typography, Button, Paper, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { categoriesList } from "./utils/utils";
+
 const useStyles = makeStyles((theme) => ({
   button: {
     "& > *": {
@@ -30,17 +32,7 @@ const Start = (props) => {
 
   let navigate = useNavigate();
 
-  const categories = [
-    "General Knowledge",
-    "Mathematics",
-    "Video Games",
-    "Books",
-    "Film",
-    "Music",
-    "Sports",
-    "Geography",
-    "History",
-  ].map((cat) => {
+  const categories = Object.keys(categoriesList).map((cat) => {
     return (
       <Button
         key={cat}
