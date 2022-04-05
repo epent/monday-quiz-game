@@ -7,6 +7,7 @@ import { Typography, Button, Paper, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
+import ProgressBar from "./ProgressBar";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -116,6 +117,7 @@ const Game = (props) => {
         >
           {props.showNextButton ? nextButton : answerButtons}
         </Box>
+        <ProgressBar progress={props.questionCount} />
       </Box>
     </Paper>
   );
