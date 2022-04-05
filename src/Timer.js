@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Typography, Paper, Box, Grid } from "@material-ui/core";
+import { Typography, Paper, Box } from "@material-ui/core";
 import TimerIcon from "@material-ui/icons/Timer";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -11,10 +11,19 @@ const useStyles = makeStyles((theme) => ({
     height: "300px",
     width: "200px",
   },
+  box: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "300px",
+  },
 }));
 
 const Timer = (props) => {
   const classes = useStyles();
+
+  const { setShowNextButton, startTimer } = props;
 
   const [countDown, setCountDown] = useState(0);
   const [runTimer, setRunTimer] = useState(false);
@@ -31,32 +40,26 @@ const Timer = (props) => {
       clearInterval(timerId);
     }
     return () => clearInterval(timerId);
-  }, [runTimer, props.startTimer]);
+  }, [runTimer, startTimer]);
 
   useEffect(() => {
     if (countDown < 0 && runTimer) {
       setRunTimer(false);
       setCountDown(0);
-      props.setShowNextButton(true);
+      setShowNextButton(true);
     }
-  }, [countDown, runTimer]);
+  }, [countDown, runTimer, setShowNextButton]);
 
   useEffect(() => {
     setRunTimer(true);
-  }, [props.startTimer]);
+  }, [startTimer]);
 
   let timer;
   countDown >= 10 ? (timer = `00:${countDown}`) : (timer = `00:0${countDown}`);
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ height: 300 }}
-      >
+      <Box className={classes.box}>
         <Box p={1}>
           <Typography variant="h4" align="center">
             Timer
