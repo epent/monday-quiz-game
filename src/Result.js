@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Typography, Paper, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,16 +16,18 @@ const useStyles = makeStyles((theme) => ({
 const Result = (props) => {
   const classes = useStyles();
 
+  let navigate = useNavigate();
+
   let text;
-  if (props.correctAnswers / props.totalAnswers < 0.5) {
+  if (props.results.correctAnswers / props.results.totalAnswers < 0.5) {
     text = (
       <Box>
         <Typography variant="h4" align="center">
           It's OK!
         </Typography>
         <Typography variant="h4" align="center">
-          You answered correctly {props.correctAnswers} questions out of
-          {props.totalAnswers}.
+          You answered correctly {props.results.correctAnswers} questions out of{" "}
+          {props.results.totalAnswers}.
         </Typography>
         <Typography variant="h4" align="center">
           May be it was a bad luck. Wanna try once more?
@@ -33,8 +36,8 @@ const Result = (props) => {
     );
   }
   if (
-    props.correctAnswers / props.totalAnswers >= 0.8 &&
-    props.correctAnswers / props.totalAnswers < 1
+    props.results.correctAnswers / props.results.totalAnswers >= 0.8 &&
+    props.results.correctAnswers / props.results.totalAnswers < 1
   ) {
     text = (
       <Box>
@@ -42,8 +45,8 @@ const Result = (props) => {
           Not bad!
         </Typography>
         <Typography variant="h4" align="center">
-          You answered correctly {props.correctAnswers} questions out of
-          {props.totalAnswers}.
+          You answered correctly {props.results.correctAnswers} questions out of{" "}
+          {props.results.totalAnswers}.
         </Typography>
         <Typography variant="h4" align="center">
           Congratulations! Wanna try once more?
@@ -51,15 +54,15 @@ const Result = (props) => {
       </Box>
     );
   }
-  if (props.correctAnswers / props.totalAnswers === 1) {
+  if (props.results.correctAnswers / props.results.totalAnswers === 1) {
     text = (
       <Box>
         <Typography variant="h4" align="center">
           Wow! Look, someone smart is here!
         </Typography>
         <Typography variant="h4" align="center">
-          You answered correctly {props.correctAnswers} questions out of
-          {props.totalAnswers}.
+          You answered correctly {props.results.correctAnswers} questions out of{" "}
+          {props.results.totalAnswers}.
         </Typography>
         <Typography variant="h4" align="center">
           Congratulations! Wanna try once more?
@@ -85,7 +88,9 @@ const Result = (props) => {
             variant="contained"
             color="primary"
             size="large"
-            onClick={props.updateQuestionHandler}
+            onClick={() => {
+              navigate("/start");
+            }}
           >
             play again
           </Button>

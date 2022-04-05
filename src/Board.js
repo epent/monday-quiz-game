@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 
 import Game from "./Game";
-import Result from "./Result";
 import Timer from "./Timer";
 
 const NUMBER_OF_QUESTIONS = 10;
 
-const Board = () => {
+const Board = (props) => {
   const [questionCount, setQuestionCount] = useState(0);
 
   const [totalAnswers, setTotalAnswers] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
   const [showNextButton, setShowNextButton] = useState(false);
+
+  let navigate = useNavigate();
 
   const updateQuestionHandler = (isCorrect) => {
     if (isCorrect) {
@@ -23,31 +25,31 @@ const Board = () => {
     setTotalAnswers((prevState) => prevState + 1);
     setQuestionCount((prevState) => prevState + 1);
     setShowNextButton(false);
+
+    if (questionCount === NUMBER_OF_QUESTIONS - 1) {
+      props.setResults({
+        totalAnswers: totalAnswers,
+        correctAnswers: correctAnswers,
+      });
+      navigate("/result");
+    }
   };
-
-  const game = (
-    <Grid item>
-      <Game
-        questionCount={questionCount}
-        updateQuestionHandler={updateQuestionHandler}
-        showNextButton={showNextButton}
-      />
-    </Grid>
-  );
-
-  const timer = (
-    <Grid item>
-      <Timer startTimer={questionCount} setShowNextButton={setShowNextButton} />
-    </Grid>
-  );
 
   return (
     <Grid container spacing={3}>
-      {questionCount !== NUMBER_OF_QUESTIONS && game}
-      {questionCount !== NUMBER_OF_QUESTIONS && timer}
-      {questionCount === NUMBER_OF_QUESTIONS && (
-        <Result totalAnswers={totalAnswers} correctAnswers={correctAnswers} />
-      )}
+      <Grid item>
+        <Game
+          questionCount={questionCount}
+          updateQuestionHandler={updateQuestionHandler}
+          showNextButton={showNextButton}
+        />
+      </Grid>
+      <Grid item>
+        <Timer
+          startTimer={questionCount}
+          setShowNextButton={setShowNextButton}
+        />
+      </Grid>
     </Grid>
   );
 };
