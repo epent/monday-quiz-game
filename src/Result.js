@@ -10,6 +10,16 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
     height: "300px",
     width: "1000px",
+    [theme.breakpoints.up("xs")]: {
+      width: 300,
+      height: 500,
+    },
+  },
+  typography: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "20px",
+    },
   },
 }));
 
@@ -22,14 +32,12 @@ const Result = (props) => {
   if (props.correctAnswers / props.totalAnswers < 0.5) {
     text = (
       <Box>
-        <Typography variant="h4" align="center">
-          It's OK!
-        </Typography>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>It's OK!</Typography>
+        <Typography className={classes.typography}>
           You answered correctly {props.correctAnswers} questions out of{" "}
           {props.totalAnswers}.
         </Typography>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>
           May be it was a bad luck. Wanna try once more?
         </Typography>
       </Box>
@@ -41,14 +49,12 @@ const Result = (props) => {
   ) {
     text = (
       <Box>
-        <Typography variant="h4" align="center">
-          Not bad!
-        </Typography>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>Not bad!</Typography>
+        <Typography className={classes.typography}>
           You answered correctly {props.correctAnswers} questions out of{" "}
           {props.totalAnswers}.
         </Typography>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>
           Congratulations! Wanna try once more?
         </Typography>
       </Box>
@@ -57,14 +63,14 @@ const Result = (props) => {
   if (props.correctAnswers / props.totalAnswers === 1) {
     text = (
       <Box>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>
           Wow! Look, someone smart is here!
         </Typography>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>
           You answered correctly {props.correctAnswers} questions out of{" "}
           {props.totalAnswers}.
         </Typography>
-        <Typography variant="h4" align="center">
+        <Typography className={classes.typography}>
           Congratulations! Wanna try once more?
         </Typography>
       </Box>
@@ -78,11 +84,9 @@ const Result = (props) => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        sx={{ height: 300 }}
+        sx={{ height: 500 }}
       >
-        <Box p={3} mx={5}>
-          {text}
-        </Box>
+        <Box m={5}>{text}</Box>
         <Box display="flex" justifyContent="center" alignItems="center">
           <Box p={1}>
             <Button

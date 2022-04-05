@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
 import ProgressBar from "./ProgressBar";
+import Timer from "./Timer";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -18,8 +19,16 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    width: "1000px",
-    height: "300px",
+    [theme.breakpoints.up("xs")]: {
+      width: 300,
+      height: 500,
+    },
+  },
+  typography: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "20px",
+    },
   },
 }));
 
@@ -97,15 +106,21 @@ const Game = (props) => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
+      <Box p={3}>
+        <Timer
+          startTimer={props.questionCount}
+          setShowNextButton={props.setShowNextButton}
+        />
+      </Box>
       <Box
         display="flex"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        sx={{ height: 300 }}
+        sx={{ height: 400 }}
       >
-        <Box p={3} mx={5}>
-          <Typography variant="h4" align="center" gutterBottom>
+        <Box m={3}>
+          <Typography className={classes.typography} gutterBottom>
             {questionData.question}
           </Typography>
         </Box>
@@ -114,6 +129,7 @@ const Game = (props) => {
           className={classes.button}
           display="flex"
           justifyContent="center"
+          flexWrap="wrap"
         >
           {props.showNextButton ? nextButton : answerButtons}
         </Box>

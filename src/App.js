@@ -63,13 +63,13 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Grid container>
-        <Grid item>
+        <Grid item xs={12}>
           <Appbar
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <Toolbar />
           <Box m={3}>{routes}</Box>
         </Grid>

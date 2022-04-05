@@ -13,12 +13,20 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    width: "1000px",
+    [theme.breakpoints.up("xs")]: {
+      width: 300,
+    },
   },
   box: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  typography: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "25px",
+    },
   },
 }));
 
@@ -44,15 +52,17 @@ const Welcome = (props) => {
 
   const form = (
     <form onSubmit={submitNameHandler}>
-      <Box className={classes.box} flexDirection="row">
-        <TextField
-          variant="outlined"
-          color="primary"
-          label="Your Name"
-          value={name}
-          onChange={updateNameHandler}
-        />
-        <Box p={3}>
+      <Box className={classes.box} p={1} flexDirection="row">
+        <Box p={1}>
+          <TextField
+            variant="outlined"
+            color="primary"
+            label="Your Name"
+            value={name}
+            onChange={updateNameHandler}
+          />
+        </Box>
+        <Box p={1}>
           <Button
             variant="contained"
             color="primary"
@@ -71,7 +81,7 @@ const Welcome = (props) => {
     <Paper elevation={3} className={classes.paper} sx={{ height: 300 }}>
       <Box className={classes.box} flexDirection="column" sx={{ height: 300 }}>
         <Box p={3}>
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography className={classes.typography} gutterBottom>
             Welcome dear friend! What's your name?
           </Typography>
         </Box>

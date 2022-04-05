@@ -8,15 +8,25 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    height: "300px",
-    width: "200px",
+    [theme.breakpoints.up("xs")]: {
+      width: 200,
+      height: 300,
+    },
   },
   box: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "300px",
+    [theme.breakpoints.up("xs")]: {
+      height: 300,
+    },
+  },
+  typography: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "30px",
+    },
   },
 }));
 
@@ -54,28 +64,38 @@ const Timer = (props) => {
     setRunTimer(true);
   }, [startTimer]);
 
-  let timer;
-  countDown >= 10 ? (timer = `00:${countDown}`) : (timer = `00:0${countDown}`);
+  let seconds;
+  countDown >= 10
+    ? (seconds = `00:${countDown}`)
+    : (seconds = `00:0${countDown}`);
 
-  return (
-    <Paper elevation={3} className={classes.paper}>
-      <Box className={classes.box}>
-        <Box p={1}>
-          <Typography variant="h4" align="center">
-            Timer
-          </Typography>
-        </Box>
-        <Box p={1}>
-          <TimerIcon color="primary" style={{ fontSize: 80 }} />
-        </Box>
-        <Box p={1}>
-          <Typography variant="h3" align="center">
-            {timer}
-          </Typography>
-        </Box>
-      </Box>
-    </Paper>
-  );
+  let timer;
+
+  props.bigTimer
+    ? (timer = (
+        <Paper elevation={3} className={classes.paper}>
+          <Box className={classes.box}>
+            <Box p={1}>
+              <Typography className={classes.typography}>Timer</Typography>
+            </Box>
+            <Box p={1}>
+              <TimerIcon color="primary" style={{ fontSize: 80 }} />
+            </Box>
+            <Box p={1}>
+              <Typography variant="h3" align="center">
+                {seconds}
+              </Typography>
+            </Box>
+          </Box>
+        </Paper>
+      ))
+    : (timer = (
+        <Typography variant="h5" align="center">
+          {seconds}
+        </Typography>
+      ));
+
+  return <div>{timer}</div>;
 };
 
 export default Timer;

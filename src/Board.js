@@ -34,12 +34,14 @@ const Board = (props) => {
           questionCount={questionCount}
           updateQuestionHandler={updateQuestionHandler}
           showNextButton={showNextButton}
+          setShowNextButton={setShowNextButton}
         />
       </Grid>
       <Grid item>
         <Timer
           startTimer={questionCount}
           setShowNextButton={setShowNextButton}
+          bigTimer
         />
       </Grid>
     </Grid>

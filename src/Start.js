@@ -15,13 +15,21 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    width: "1000px",
-    height: "700px",
+    [theme.breakpoints.up("xs")]: {
+      width: 300,
+      height: 700,
+    },
   },
   box: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  typography: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "20px",
+    },
   },
 }));
 
@@ -50,8 +58,8 @@ const Start = (props) => {
   return (
     <Paper elevation={3} className={classes.paper}>
       <Box className={classes.box} flexDirection="column" sx={{ height: 700 }}>
-        <Box p={3}>
-          <Typography variant="h4" align="center" gutterBottom>
+        <Box m={3}>
+          <Typography className={classes.typography} gutterBottom>
             {playerName}, choose category and press{" "}
             <Box component="span" variant="h4" color="primary.main">
               START
@@ -62,7 +70,7 @@ const Start = (props) => {
         <Box p={3} display="flex" flexDirection="column">
           {categories}
         </Box>
-        <Box p={3}>
+        <Box p={3} sx={{ width: "80%" }}>
           <Button
             variant="contained"
             color="primary"
@@ -71,6 +79,7 @@ const Start = (props) => {
             }}
             className={classes.button}
             disabled={category ? false : true}
+            fullWidth
           >
             start
           </Button>
