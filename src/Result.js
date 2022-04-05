@@ -83,17 +83,32 @@ const Result = (props) => {
         <Box p={3} mx={5}>
           {text}
         </Box>
-        <Box p={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={() => {
-              navigate("/start");
-            }}
-          >
-            play again
-          </Button>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Box p={1}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={() => {
+                navigate("/start");
+              }}
+            >
+              play again
+            </Button>
+          </Box>
+          <Box p={1}>
+            <Button
+              variant="contained"
+              color="default"
+              size="large"
+              onClick={() => {
+                localStorage.removeItem("playerName");
+                navigate("/");
+              }}
+            >
+              exit
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Paper>
