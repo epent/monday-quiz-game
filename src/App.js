@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
@@ -7,7 +8,10 @@ import Box from "@material-ui/core/Box";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import Appbar from "./Appbar";
+import Welcome from "./Welcome";
+import Start from "./Start";
 import Board from "./Board";
+import Result from "./Result";
 
 const theme = createTheme({
   palette: {
@@ -26,6 +30,20 @@ const theme = createTheme({
 });
 
 function App() {
+  const [results, setResults] = useState({
+    totalAnswers: 0,
+    correctAnswers: 0,
+  });
+
+  const routes = (
+    <Routes>
+      <Route path="/" element={<Welcome />} />
+      <Route path="/start" element={<Start />} />
+      <Route path="/game" element={<Board setResults={setResults} />} />
+      <Route path="/result" element={<Result results={results} />} />
+    </Routes>
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container>
@@ -34,9 +52,7 @@ function App() {
         </Grid>
         <Grid item>
           <Toolbar />
-          <Box m={3}>
-            <Board />
-          </Box>
+          <Box m={3}>{routes}</Box>
         </Grid>
       </Grid>
     </ThemeProvider>
