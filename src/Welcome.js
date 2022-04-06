@@ -13,19 +13,26 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    [theme.breakpoints.up("xs")]: {
-      width: 300,
-    },
+    // [theme.breakpoints.up("sm")]: {
+    //   width: 300,
+    //   height: 400,
+    // },
   },
   box: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.up("xs")]: {
+      height: "300px",
+    },
   },
   typography: {
     textAlign: "center",
     [theme.breakpoints.up("xs")]: {
       fontSize: "25px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
     },
   },
 }));
@@ -52,7 +59,13 @@ const Welcome = (props) => {
 
   const form = (
     <form onSubmit={submitNameHandler}>
-      <Box className={classes.box} p={1} flexDirection="row">
+      <Box
+        p={1}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="row"
+      >
         <Box p={1}>
           <TextField
             variant="outlined"
@@ -78,8 +91,8 @@ const Welcome = (props) => {
   );
 
   return (
-    <Paper elevation={3} className={classes.paper} sx={{ height: 300 }}>
-      <Box className={classes.box} flexDirection="column" sx={{ height: 300 }}>
+    <Paper elevation={3} className={classes.paper}>
+      <Box className={classes.box} flexDirection="column">
         <Box p={3}>
           <Typography className={classes.typography} gutterBottom>
             Welcome dear friend! What's your name?

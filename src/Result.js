@@ -8,17 +8,18 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    height: "300px",
-    width: "1000px",
-    [theme.breakpoints.up("xs")]: {
-      width: 300,
-      height: 500,
-    },
+    // [theme.breakpoints.up("xs")]: {
+    //   width: 300,
+    //   height: 500,
+    // },
   },
   typography: {
     textAlign: "center",
     [theme.breakpoints.up("xs")]: {
       fontSize: "20px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
     },
   },
 }));
@@ -84,11 +85,10 @@ const Result = (props) => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        sx={{ height: 500 }}
       >
         <Box m={5}>{text}</Box>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Box p={1}>
+          <Box p={1} mb={3}>
             <Button
               variant="contained"
               color="primary"
@@ -102,7 +102,7 @@ const Result = (props) => {
               play again
             </Button>
           </Box>
-          <Box p={1}>
+          <Box p={1} mb={3}>
             <Button
               variant="contained"
               color="default"

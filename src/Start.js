@@ -15,20 +15,26 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    [theme.breakpoints.up("xs")]: {
-      width: 300,
-      height: 700,
-    },
+    // [theme.breakpoints.up("xs")]: {
+    //   width: 300,
+    //   height: 700,
+    // },
   },
   box: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.up("xs")]: {
+      height: "700px",
+    },
   },
   typography: {
     textAlign: "center",
     [theme.breakpoints.up("xs")]: {
       fontSize: "20px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
     },
   },
 }));
@@ -57,7 +63,7 @@ const Start = (props) => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Box className={classes.box} flexDirection="column" sx={{ height: 700 }}>
+      <Box className={classes.box} flexDirection="column">
         <Box m={3}>
           <Typography className={classes.typography} gutterBottom>
             {playerName}, choose category and press{" "}

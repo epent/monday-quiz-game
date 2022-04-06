@@ -19,15 +19,18 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    [theme.breakpoints.up("xs")]: {
-      width: 300,
-      height: 500,
-    },
+    // [theme.breakpoints.up("xs")]: {
+    //   width: 300,
+    //   height: 500,
+    // },
   },
   typography: {
     textAlign: "center",
     [theme.breakpoints.up("xs")]: {
       fontSize: "20px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
     },
   },
 }));
@@ -117,7 +120,6 @@ const Game = (props) => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        sx={{ height: 400 }}
       >
         <Box m={3}>
           <Typography className={classes.typography} gutterBottom>

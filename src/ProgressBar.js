@@ -14,7 +14,7 @@ const ProgressBar = (props) => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.root}>
+    <Box className={classes.root} m={3}>
       <LinearProgress variant="determinate" value={props.progress * 10} />
     </Box>
   );
