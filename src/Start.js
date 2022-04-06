@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Typography, Button, Paper, Box } from "@material-ui/core";
+import { Typography, Button, Paper, Box, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { categoriesList } from "./utils/utils";
@@ -15,18 +15,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    // [theme.breakpoints.up("xs")]: {
-    //   width: 300,
-    //   height: 700,
-    // },
   },
   box: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    [theme.breakpoints.up("xs")]: {
-      height: "700px",
-    },
   },
   typography: {
     textAlign: "center",
@@ -35,6 +28,14 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("sm")]: {
       fontSize: "30px",
+    },
+  },
+  link: {
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "20px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "25px",
     },
   },
 }));
@@ -48,14 +49,18 @@ const Start = (props) => {
 
   const categories = Object.keys(categoriesList).map((cat) => {
     return (
-      <Button
-        key={cat}
-        size="large"
-        color={category === cat ? "secondary" : "primary"}
-        onClick={() => setCategory(cat)}
-      >
-        {cat}
-      </Button>
+      <Box m={1}>
+        <Link
+          key={cat}
+          className={classes.link}
+          component="button"
+          underline="none"
+          color={category === cat ? "secondary" : "primary"}
+          onClick={() => setCategory(cat)}
+        >
+          {cat}
+        </Link>
+      </Box>
     );
   });
 
@@ -73,7 +78,7 @@ const Start = (props) => {
             to play the game.
           </Typography>
         </Box>
-        <Box p={3} display="flex" flexDirection="column">
+        <Box p={3} display="flex" flexDirection="column" alignItems="center">
           {categories}
         </Box>
         <Box p={3} sx={{ width: "80%" }}>

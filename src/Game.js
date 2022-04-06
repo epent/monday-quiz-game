@@ -19,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    // [theme.breakpoints.up("xs")]: {
-    //   width: 300,
-    //   height: 500,
-    // },
   },
   typography: {
     textAlign: "center",

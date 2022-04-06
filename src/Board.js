@@ -28,7 +28,7 @@ const Board = (props) => {
   };
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} justifyContent="center">
       <Grid item>
         <Game
           questionCount={questionCount}
@@ -37,13 +37,13 @@ const Board = (props) => {
           setShowNextButton={setShowNextButton}
         />
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <Timer
           startTimer={questionCount}
           setShowNextButton={setShowNextButton}
           bigTimer
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

@@ -13,10 +13,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#fafafa",
     borderRadius: 10,
-    // [theme.breakpoints.up("sm")]: {
-    //   width: 300,
-    //   height: 400,
-    // },
   },
   box: {
     display: "flex",
