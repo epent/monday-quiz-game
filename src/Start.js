@@ -72,7 +72,7 @@ const Start = (props) => {
         <Box m={3}>
           <Typography className={classes.typography} gutterBottom>
             {playerName}, choose category and press{" "}
-            <Box component="span" variant="h4" color="primary.main">
+            <Box component="span" variant="h4" color="secondary.main">
               START
             </Box>{" "}
             to play the game.

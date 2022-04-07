@@ -87,7 +87,7 @@ const Result = (props) => {
           <Box p={1} mb={3}>
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               size="large"
               onClick={() => {
                 props.setTotalAnswers(0);

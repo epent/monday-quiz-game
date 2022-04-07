@@ -74,7 +74,7 @@ const Welcome = (props) => {
         <Box p={1}>
           <Button
             variant="contained"
-            color="primary"
+            color="secondary"
             onClick={submitNameHandler}
             className={classes.button}
             disabled={name.length === 0 ? true : false}

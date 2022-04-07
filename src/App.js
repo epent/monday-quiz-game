@@ -16,15 +16,14 @@ import Result from "./Result";
 const theme = createTheme({
   palette: {
     primary: {
-      light: "#80deea",
-      main: "#00bcd4",
-      dark: "#00838f",
+      light: "#70c4bc",
+      main: "#4db6ac",
+      dark: "#357f78",
     },
     secondary: {
-      // This is green.A700 as hex.
-      light: "#33bfff",
-      main: "#00b0ff",
-      dark: "#007bb2",
+      light: "#f7b7cc",
+      main: "#f6a5c0",
+      dark: "#ad8291",
     },
   },
 });

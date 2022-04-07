@@ -75,7 +75,7 @@ const Timer = (props) => {
               <Typography className={classes.typography}>Timer</Typography>
             </Box>
             <Box p={1}>
-              <TimerIcon color="primary" style={{ fontSize: 80 }} />
+              <TimerIcon color="secondary" style={{ fontSize: 80 }} />
             </Box>
             <Box p={1}>
               <Typography variant="h3" align="center">

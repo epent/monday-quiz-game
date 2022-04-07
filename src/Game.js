@@ -105,7 +105,8 @@ const Game = (props) => {
       <Button
         key={answer}
         variant="contained"
-        color="primary"
+        color="secondary"
+        size="large"
         onClick={() =>
           props.updateQuestionHandler(
             answer === he.decode(gameData[props.questionCount].correct_answer)
