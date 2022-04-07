@@ -30,7 +30,7 @@ const Board = (props) => {
 
   return (
     <Grid container spacing={3} justifyContent="center">
-      <Grid item xs={12} lg={10}>
+      <Grid item xs={12} md={9}>
         <Game
           questionCount={questionCount}
           updateQuestionHandler={updateQuestionHandler}
@@ -38,8 +38,8 @@ const Board = (props) => {
           setShowNextButton={setShowNextButton}
         />
       </Grid>
-      <Hidden mdDown>
-        <Grid item xs={0} lg={2} sx={{ height: "100%" }}>
+      <Hidden smDown>
+        <Grid item xs={0} md={3} sx={{ height: "100%" }}>
           <Timer
             startTimer={questionCount}
             setShowNextButton={setShowNextButton}
