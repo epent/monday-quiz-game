@@ -143,17 +143,14 @@ const Game = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box m={3}>
-          <Typography
-            className={classes.typography}
-            gutterBottom
-            color="primary"
-          >
+        <Box my={5} mx={10}>
+          <Typography className={classes.typography} color="primary">
             {questionData.question}
           </Typography>
         </Box>
         <Box
-          p={3}
+          my={3}
+          mx={10}
           className={classes.button}
           display="flex"
           justifyContent="center"
