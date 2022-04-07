@@ -6,6 +6,7 @@ import Hidden from "@material-ui/core/Hidden";
 
 import Game from "./Game";
 import Timer from "./Timer";
+import Score from "./Score";
 import { NUMBER_OF_QUESTIONS } from "./utils/utils";
 
 const Board = (props) => {
@@ -13,12 +14,20 @@ const Board = (props) => {
 
   const [showNextButton, setShowNextButton] = useState(false);
 
+  const [scoreList, setScoreList] = useState(
+    Array.from({ length: 10 }, () => "wrong")
+  );
+
   let navigate = useNavigate();
 
-  const updateQuestionHandler = (isCorrect) => {
-    if (isCorrect) {
+  const updateQuestionHandler = (correct) => {
+    if (correct) {
       props.setCorrectAnswers((prevState) => prevState + 1);
+      const updatedScoreList = [...scoreList];
+      updatedScoreList[questionCount] = "correct";
+      setScoreList(updatedScoreList);
     }
+
     props.setTotalAnswers((prevState) => prevState + 1);
     setQuestionCount((prevState) => prevState + 1);
     setShowNextButton(false);
@@ -47,6 +56,9 @@ const Board = (props) => {
           />
         </Grid>
       </Hidden>
+      <Grid item xs={12}>
+        <Score scoreList={scoreList} questionCount={questionCount} />
+      </Grid>
     </Grid>
   );
 };
