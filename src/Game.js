@@ -45,7 +45,6 @@ const Game = (props) => {
       },
     },
     paper: {
-      backgroundColor: "#fafafa",
       backgroundImage: `url(${image})`,
       backgroundRepeat: "repeat",
       borderRadius: 10,
@@ -58,6 +57,7 @@ const Game = (props) => {
       [theme.breakpoints.up("sm")]: {
         fontSize: "30px",
       },
+      padding: theme.spacing(5),
     },
   }));
   const classes = useStyles();
@@ -129,7 +129,7 @@ const Game = (props) => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Hidden lgUp>
+      <Hidden mdUp>
         <Box p={3}>
           <Timer
             startTimer={props.questionCount}
@@ -144,9 +144,11 @@ const Game = (props) => {
         alignItems="center"
       >
         <Box my={5} mx={10}>
-          <Typography className={classes.typography} color="primary">
-            {questionData.question}
-          </Typography>
+          <Paper elevation={0} sx={{ borderRadius: 10 }}>
+            <Typography className={classes.typography} color="primary">
+              {questionData.question}
+            </Typography>
+          </Paper>
         </Box>
         <Box
           my={3}
