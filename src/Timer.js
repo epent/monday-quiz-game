@@ -9,8 +9,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fafafa",
     borderRadius: 10,
     [theme.breakpoints.up("xs")]: {
-      width: 200,
-      height: 300,
+      height: "100%",
     },
   },
   box: {
@@ -18,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    [theme.breakpoints.up("xs")]: {
-      height: 300,
-    },
   },
   typography: {
     textAlign: "center",
@@ -74,7 +70,7 @@ const Timer = (props) => {
   props.bigTimer
     ? (timer = (
         <Paper elevation={3} className={classes.paper}>
-          <Box className={classes.box}>
+          <Box className={classes.box} sx={{ height: "100%" }}>
             <Box p={1}>
               <Typography className={classes.typography}>Timer</Typography>
             </Box>
@@ -95,7 +91,7 @@ const Timer = (props) => {
         </Typography>
       ));
 
-  return <div>{timer}</div>;
+  return <Box sx={{ height: "100%" }}>{timer}</Box>;
 };
 
 export default Timer;

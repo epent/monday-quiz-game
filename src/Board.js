@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 
 import Game from "./Game";
 import Timer from "./Timer";
@@ -29,7 +30,7 @@ const Board = (props) => {
 
   return (
     <Grid container spacing={3} justifyContent="center">
-      <Grid item>
+      <Grid item xs={12} lg={10}>
         <Game
           questionCount={questionCount}
           updateQuestionHandler={updateQuestionHandler}
@@ -37,13 +38,15 @@ const Board = (props) => {
           setShowNextButton={setShowNextButton}
         />
       </Grid>
-      {/* <Grid item>
-        <Timer
-          startTimer={questionCount}
-          setShowNextButton={setShowNextButton}
-          bigTimer
-        />
-      </Grid> */}
+      <Hidden mdDown>
+        <Grid item xs={0} lg={2} sx={{ height: "100%" }}>
+          <Timer
+            startTimer={questionCount}
+            setShowNextButton={setShowNextButton}
+            bigTimer
+          />
+        </Grid>
+      </Hidden>
     </Grid>
   );
 };

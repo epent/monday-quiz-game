@@ -3,7 +3,7 @@ import he from "he";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { Typography, Button, Paper, Box } from "@material-ui/core";
+import { Typography, Button, Paper, Box, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
@@ -105,12 +105,14 @@ const Game = (props) => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Box p={3}>
-        <Timer
-          startTimer={props.questionCount}
-          setShowNextButton={props.setShowNextButton}
-        />
-      </Box>
+      <Hidden lgUp>
+        <Box p={3}>
+          <Timer
+            startTimer={props.questionCount}
+            setShowNextButton={props.setShowNextButton}
+          />
+        </Box>
+      </Hidden>
       <Box
         display="flex"
         flexDirection="column"
@@ -118,7 +120,11 @@ const Game = (props) => {
         alignItems="center"
       >
         <Box m={3}>
-          <Typography className={classes.typography} gutterBottom>
+          <Typography
+            className={classes.typography}
+            gutterBottom
+            color="primary"
+          >
             {questionData.question}
           </Typography>
         </Box>
