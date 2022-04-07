@@ -9,34 +9,58 @@ import { makeStyles } from "@material-ui/core/styles";
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
 import ProgressBar from "./ProgressBar";
 import Timer from "./Timer";
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  paper: {
-    backgroundColor: "#fafafa",
-    borderRadius: 10,
-  },
-  typography: {
-    textAlign: "center",
-    [theme.breakpoints.up("xs")]: {
-      fontSize: "20px",
-    },
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "30px",
-    },
-  },
-}));
+import {
+  general,
+  math,
+  books,
+  film,
+  geography,
+  history,
+  music,
+  sports,
+  videogames,
+} from "./images";
 
 const Game = (props) => {
-  const classes = useStyles();
-
   const [gameData, setGameData] = useState(null);
 
   const params = useParams();
+
+  let image;
+
+  if (params.categoryName === "General Knowledge") image = general;
+  if (params.categoryName === "Books") image = books;
+  if (params.categoryName === "Film") image = film;
+  if (params.categoryName === "Geography") image = geography;
+  if (params.categoryName === "History") image = history;
+  if (params.categoryName === "Mathematics") image = math;
+  if (params.categoryName === "Music") image = music;
+  if (params.categoryName === "Sports") image = sports;
+  if (params.categoryName === "Video Games") image = videogames;
+
+  const useStyles = makeStyles((theme) => ({
+    button: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+    paper: {
+      backgroundColor: "#fafafa",
+      backgroundImage: `url(${image})`,
+      backgroundRepeat: "repeat",
+      borderRadius: 10,
+    },
+    typography: {
+      textAlign: "center",
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "20px",
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "30px",
+      },
+    },
+  }));
+  const classes = useStyles();
 
   useEffect(() => {
     const fetchData = async () => {

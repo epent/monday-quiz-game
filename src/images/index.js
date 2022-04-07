@@ -1,0 +1,9 @@
+export { default as general } from "./General.jpeg";
+export { default as math } from "./Math.webp";
+export { default as books } from "./Books.webp";
+export { default as film } from "./Film.jpeg";
+export { default as geography } from "./Geography.jpeg";
+export { default as history } from "./History.jpeg";
+export { default as music } from "./Music.jpeg";
+export { default as sports } from "./Sports.jpeg";
+export { default as videogames } from "./VideoGames.jpeg";
