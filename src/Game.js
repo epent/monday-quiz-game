@@ -43,6 +43,11 @@ const Game = (props) => {
       "& > *": {
         margin: theme.spacing(1),
       },
+      [theme.breakpoints.up("xs")]: {
+        marginLeft: theme.spacing(5),
+        marginRight: theme.spacing(5),
+        marginTop: theme.spacing(2),
+      },
     },
     paper: {
       backgroundImage: `url(${image})`,
@@ -58,6 +63,12 @@ const Game = (props) => {
         fontSize: "30px",
       },
       padding: theme.spacing(5),
+    },
+    typographyBox: {
+      [theme.breakpoints.up("xs")]: {
+        marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(3),
+      },
     },
   }));
   const classes = useStyles();
@@ -144,7 +155,7 @@ const Game = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box my={5} mx={10}>
+        <Box className={classes.typographyBox}>
           <Paper elevation={0} sx={{ borderRadius: 10 }}>
             <Typography className={classes.typography} color="primary">
               {questionData.question}
@@ -152,8 +163,6 @@ const Game = (props) => {
           </Paper>
         </Box>
         <Box
-          my={3}
-          mx={10}
           className={classes.button}
           display="flex"
           justifyContent="center"

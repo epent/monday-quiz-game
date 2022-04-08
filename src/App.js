@@ -70,7 +70,7 @@ function App() {
         </Grid>
         <Grid item xs={12}>
           <Toolbar />
-          <Box m={3}>{routes}</Box>
+          <Box m={2}>{routes}</Box>
         </Grid>
       </Grid>
     </ThemeProvider>

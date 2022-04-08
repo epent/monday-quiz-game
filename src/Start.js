@@ -69,7 +69,7 @@ const Start = (props) => {
   return (
     <Paper elevation={3} className={classes.paper}>
       <Box className={classes.box} flexDirection="column">
-        <Box m={3}>
+        <Box m={3} mb={1}>
           <Typography className={classes.typography} gutterBottom>
             {playerName}, choose category and press{" "}
             <Box component="span" variant="h4" color="secondary.main">
@@ -78,10 +78,10 @@ const Start = (props) => {
             to play the game.
           </Typography>
         </Box>
-        <Box p={3} display="flex" flexDirection="column" alignItems="center">
+        <Box m={2} display="flex" flexDirection="column" alignItems="center">
           {categories}
         </Box>
-        <Box p={3} sx={{ width: "80%" }}>
+        <Box m={3} mt={1} sx={{ width: "80%" }}>
           <Button
             variant="contained"
             color="primary"
