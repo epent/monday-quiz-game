@@ -74,6 +74,11 @@ const Game = (props) => {
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
       },
+      [theme.breakpoints.up("md")]: {
+        marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(3),
+        marginTop: theme.spacing(3),
+      },
     },
   }));
   const classes = useStyles();
