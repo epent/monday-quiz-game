@@ -38,7 +38,7 @@ const Timer = (props) => {
     let timerId;
 
     if (runTimer) {
-      setCountDown(15);
+      setCountDown(20);
       timerId = setInterval(() => {
         setCountDown((countDown) => countDown - 1);
       }, 1000);
@@ -86,9 +86,21 @@ const Timer = (props) => {
         </Paper>
       ))
     : (timer = (
-        <Typography variant="h5" align="center">
-          {seconds}
-        </Typography>
+        <Box className={classes.box}>
+          <Box
+            p={3}
+            sx={{
+              backgroundColor: "#FFFFFF",
+              border: "2px solid #f6a5c0",
+              borderRadius: 15,
+              width: "80%",
+            }}
+          >
+            <Typography variant="h5" align="center" color="secondary">
+              {seconds}
+            </Typography>
+          </Box>
+        </Box>
       ));
 
   return <Box sx={{ height: "100%" }}>{timer}</Box>;
