@@ -1,36 +1,38 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Link from "@material-ui/core/Link";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+import { AppBar, Toolbar, Link, Grid } from "@material-ui/core";
 
 const Appbar = (props) => {
-  const classes = useStyles();
-
   let navigate = useNavigate();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="fixed">
-        <Toolbar>
+    <AppBar position="fixed">
+      <Toolbar>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <Link
-            component="button"
             color="textPrimary"
-            variant="h6"
+            variant="button"
+            onClick={() => {
+              props.setTotalAnswers(0);
+              props.setCorrectAnswers(0);
+              if (localStorage.getItem("playerName")) {
+                navigate("/start");
+              } else {
+                navigate("/");
+              }
+            }}
+          >
+            EXIT GAME
+          </Link>
+          <Link
+            color="textPrimary"
+            variant="button"
             onClick={() => {
               props.setTotalAnswers(0);
               props.setCorrectAnswers(0);
@@ -38,11 +40,11 @@ const Appbar = (props) => {
               navigate("/");
             }}
           >
-            EXIT
+            LOG OUT
           </Link>
-        </Toolbar>
-      </AppBar>
-    </div>
+        </Grid>
+      </Toolbar>
+    </AppBar>
   );
 };
 
