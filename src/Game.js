@@ -54,6 +54,11 @@ const Game = (props) => {
       backgroundRepeat: "repeat",
       borderRadius: 10,
     },
+    typographyPaper: {
+      border: "2px dashed",
+      borderColor: "#4db6ac",
+      borderRadius: 15,
+    },
     typography: {
       textAlign: "center",
       [theme.breakpoints.up("xs")]: {
@@ -156,7 +161,7 @@ const Game = (props) => {
         alignItems="center"
       >
         <Box className={classes.typographyBox}>
-          <Paper elevation={0} sx={{ borderRadius: 10 }}>
+          <Paper elevation={0} className={classes.typographyPaper}>
             <Typography className={classes.typography} color="primary">
               {questionData.question}
             </Typography>
