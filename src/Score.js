@@ -1,8 +1,9 @@
 import React from "react";
 
 import { Paper, Box } from "@material-ui/core";
-import CloudRoundedIcon from "@material-ui/icons/CloudRounded";
-import CloudOutlinedIcon from "@material-ui/icons/CloudOutlined";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CancelIcon from "@material-ui/icons/Cancel";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,11 +21,15 @@ const Score = (props) => {
   const clouds = props.scoreList.map((elm, i) => {
     return elm === "correct" ? (
       <Box className={classes.box}>
-        <CloudRoundedIcon style={{ fontSize: 40 }} color="secondary" />
+        <CheckCircleIcon style={{ fontSize: 40 }} color="secondary" />
+      </Box>
+    ) : elm === "wrong" ? (
+      <Box className={classes.box}>
+        <CancelIcon style={{ fontSize: 40 }} color="secondary" />
       </Box>
     ) : (
       <Box className={classes.box}>
-        <CloudOutlinedIcon
+        <RadioButtonUncheckedIcon
           style={{ fontSize: 40 }}
           color={props.questionCount === i ? "primary" : "secondary"}
         />

@@ -15,16 +15,21 @@ const Board = (props) => {
   const [showNextButton, setShowNextButton] = useState(false);
 
   const [scoreList, setScoreList] = useState(
-    Array.from({ length: 10 }, () => "wrong")
+    Array.from({ length: 10 }, () => "empty")
   );
 
   let navigate = useNavigate();
 
   const updateQuestionHandler = (correct) => {
+    const updatedScoreList = [...scoreList];
+
     if (correct) {
       props.setCorrectAnswers((prevState) => prevState + 1);
-      const updatedScoreList = [...scoreList];
+
       updatedScoreList[questionCount] = "correct";
+      setScoreList(updatedScoreList);
+    } else {
+      updatedScoreList[questionCount] = "wrong";
       setScoreList(updatedScoreList);
     }
 
