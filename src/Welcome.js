@@ -49,7 +49,7 @@ const Welcome = (props) => {
 
     if (name.length > 0) {
       localStorage.setItem("playerName", name);
-      props.setShowExit(true);
+      props.setShowExitButton(true);
       navigate("/rules");
     }
   };

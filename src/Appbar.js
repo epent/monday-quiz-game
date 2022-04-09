@@ -18,7 +18,7 @@ const Appbar = (props) => {
         >
           <Box
             sx={{
-              visibility: props.showBack ? "visible" : "hidden",
+              visibility: props.showBackButton ? "visible" : "hidden",
             }}
           >
             <Link
@@ -29,7 +29,7 @@ const Appbar = (props) => {
                 props.setCorrectAnswers(0);
                 props.setScore(0);
                 if (localStorage.getItem("playerName")) {
-                  props.setShowBack(false);
+                  props.setShowBackButton(false);
                   navigate("/start");
                 } else {
                   navigate("/");
@@ -40,7 +40,7 @@ const Appbar = (props) => {
             </Link>
           </Box>
 
-          {props.showExit && (
+          {props.showExitButton && (
             <Link
               color="textPrimary"
               variant="button"
@@ -48,8 +48,8 @@ const Appbar = (props) => {
                 props.setTotalAnswers(0);
                 props.setCorrectAnswers(0);
                 props.setScore(0);
-                props.setShowExit(false);
-                props.setShowBack(false);
+                props.setShowExitButton(false);
+                props.setShowBackButton(false);
                 localStorage.removeItem("playerName");
                 navigate("/");
               }}

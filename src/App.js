@@ -17,14 +17,10 @@ import Result from "./Result";
 const theme = createTheme({
   palette: {
     primary: {
-      light: "#70c4bc",
       main: "#4db6ac",
-      dark: "#357f78",
     },
     secondary: {
-      light: "#f7b7cc",
       main: "#f6a5c0",
-      dark: "#ad8291",
     },
   },
 });
@@ -33,14 +29,14 @@ function App() {
   const [totalAnswers, setTotalAnswers] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [score, setScore] = useState(0);
-  const [showExit, setShowExit] = useState(false);
-  const [showBack, setShowBack] = useState(false);
+  const [showExitButton, setShowExitButton] = useState(false);
+  const [showBackButton, setShowBackButton] = useState(false);
 
   const routes = (
     <Routes>
-      <Route path="/" element={<Welcome setShowExit={setShowExit} />} />
+      <Route path="/" element={<Welcome setShowExitButton={setShowExitButton} />} />
       <Route path="/rules" element={<Rules />} />
-      <Route path="/start" element={<Start setShowBack={setShowBack} />} />
+      <Route path="/start" element={<Start setShowBackButton={setShowBackButton} />} />
       <Route
         path="/game/:categoryName"
         element={
@@ -61,7 +57,7 @@ function App() {
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
             setScore={setScore}
-            setShowBack={setShowBack}
+            setShowBackButton={setShowBackButton}
           />
         }
       />
@@ -76,10 +72,10 @@ function App() {
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
             setScore={setScore}
-            setShowExit={setShowExit}
-            showExit={showExit}
-            setShowBack={setShowBack}
-            showBack={showBack}
+            setShowExitButton={setShowExitButton}
+            showExitButton={showExitButton}
+            setShowBackButton={setShowBackButton}
+            showBackButton={showBackButton}
           />
         </Grid>
         <Grid item xs={12}>

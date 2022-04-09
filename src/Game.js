@@ -12,7 +12,6 @@ import {
   Slide,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { withStyles } from "@material-ui/core/styles";
 
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
 import ProgressBar from "./ProgressBar";
@@ -148,11 +147,9 @@ const Game = (props) => {
     questionData.question = he.decode(gameData[props.questionCount].question);
   }
 
-  const AnswerButton = withStyles({})(Button);
-
   const answerButtons = questionData.answers.map((answer) => {
     return (
-      <AnswerButton
+      <Button
         key={answer}
         className={
           !props.showCorrectAnswer
@@ -172,7 +169,7 @@ const Game = (props) => {
         }}
       >
         {answer}
-      </AnswerButton>
+      </Button>
     );
   });
 

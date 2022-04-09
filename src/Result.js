@@ -106,7 +106,7 @@ const Result = (props) => {
                 props.setTotalAnswers(0);
                 props.setCorrectAnswers(0);
                 props.setScore(0);
-                props.setShowBack(false);
+                props.setShowBackButton(false);
                 localStorage.removeItem("playerName");
                 navigate("/");
               }}

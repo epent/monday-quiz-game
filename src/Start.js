@@ -82,7 +82,7 @@ const Start = (props) => {
             variant="contained"
             color="primary"
             onClick={() => {
-              props.setShowBack(true);
+              props.setShowBackButton(true);
               navigate(`/game/${category}`);
             }}
             className={classes.button}
