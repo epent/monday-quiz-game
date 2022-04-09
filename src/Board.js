@@ -57,11 +57,11 @@ const Board = (props) => {
       setShowCorrectAnswer(false);
       setShowAddScore(false);
       setQuestionCount((prevState) => prevState + 1);
-    }, 1000);
 
-    if (questionCount === NUMBER_OF_QUESTIONS - 1) {
-      navigate("/result");
-    }
+      if (questionCount === NUMBER_OF_QUESTIONS - 1) {
+        navigate("/result");
+      }
+    }, 1000);
   };
 
   return (

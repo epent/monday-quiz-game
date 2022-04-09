@@ -204,7 +204,7 @@ const Game = (props) => {
       >
         <Box className={classes.typographyBox}>
           <Paper elevation={0} className={classes.typographyPaper}>
-            {gameData && (
+            {gameData && props.questionCount < 10 && (
               <Typography className={classes.difficulty}>
                 Difficulty: {gameData[props.questionCount].difficulty}
               </Typography>
