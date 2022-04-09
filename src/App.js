@@ -61,6 +61,7 @@ function App() {
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
             setScore={setScore}
+            setShowBack={setShowBack}
           />
         }
       />
