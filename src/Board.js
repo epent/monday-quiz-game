@@ -18,6 +18,8 @@ const Board = (props) => {
   const [scoreList, setScoreList] = useState(
     Array.from({ length: 10 }, () => "empty")
   );
+  const [addScore, setAddScore] = useState(0);
+  const [showAddScore, setShowAddScore] = useState(false);
 
   let navigate = useNavigate();
 
@@ -26,15 +28,23 @@ const Board = (props) => {
 
     if (correct) {
       props.setCorrectAnswers((prevState) => prevState + 1);
+      setShowAddScore(true);
 
       updatedScoreList[questionCount] = "correct";
       setScoreList(updatedScoreList);
 
-      // difficulty === "easy"
-      //   ? props.setScore((prevState) => prevState + 10)
-      //   : difficulty === "medium"
-      //   ? props.setScore((prevState) => prevState + 20)
-      //   : props.setScore((prevState) => prevState + 30);
+      if (difficulty === "easy") {
+        props.setScore((prevState) => prevState + 10);
+        setAddScore(10);
+      }
+      if (difficulty === "medium") {
+        props.setScore((prevState) => prevState + 20);
+        setAddScore(20);
+      }
+      if (difficulty === "hard") {
+        props.setScore((prevState) => prevState + 30);
+        setAddScore(30);
+      }
     } else {
       updatedScoreList[questionCount] = "wrong";
       setScoreList(updatedScoreList);
@@ -45,8 +55,9 @@ const Board = (props) => {
 
     setTimeout(() => {
       setShowCorrectAnswer(false);
+      setShowAddScore(false);
       setQuestionCount((prevState) => prevState + 1);
-    }, 2000);
+    }, 1000);
 
     if (questionCount === NUMBER_OF_QUESTIONS - 1) {
       navigate("/result");
@@ -63,10 +74,12 @@ const Board = (props) => {
           setShowNextButton={setShowNextButton}
           setShowCorrectAnswer={setShowCorrectAnswer}
           showCorrectAnswer={showCorrectAnswer}
+          addScore={addScore}
+          showAddScore={showAddScore}
         />
       </Grid>
       <Hidden smDown>
-        <Grid item  md={3} sx={{ height: "100%" }}>
+        <Grid item md={3} sx={{ height: "100%" }}>
           <Timer
             startTimer={questionCount}
             setShowNextButton={setShowNextButton}

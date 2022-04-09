@@ -3,7 +3,14 @@ import he from "he";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { Typography, Button, Paper, Box, Hidden } from "@material-ui/core";
+import {
+  Typography,
+  Button,
+  Paper,
+  Box,
+  Hidden,
+  Slide,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -189,6 +196,35 @@ const Game = (props) => {
               {questionData.question}
             </Typography>
           </Paper>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+          }}
+        >
+          <Slide
+            direction="up"
+            in={props.showAddScore}
+            mountOnEnter
+            unmountOnExit
+          >
+            <Box
+              p={1}
+              mb={1}
+              sx={{
+                backgroundColor: "#FFFFFF",
+                border: "2px solid #f6a5c0",
+                borderRadius: 15,
+                width: "100%",
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
+              <Typography variant="h5" align="center" color="secondary">
+                +{props.addScore}
+              </Typography>
+            </Box>
+          </Slide>
         </Box>
         <Box
           className={classes.button}
