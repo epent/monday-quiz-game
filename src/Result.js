@@ -25,54 +25,8 @@ const Result = (props) => {
 
   let navigate = useNavigate();
 
-  let text;
-  if (props.correctAnswers / props.totalAnswers < 0.5) {
-    text = (
-      <Box>
-        <Typography className={classes.typography}>It's OK!</Typography>
-        <Typography className={classes.typography}>
-          You answered correctly {props.correctAnswers} questions out of{" "}
-          {props.totalAnswers}.
-        </Typography>
-        <Typography className={classes.typography}>
-          May be it was a bad luck. Wanna try once more?
-        </Typography>
-      </Box>
-    );
-  }
-  if (
-    props.correctAnswers / props.totalAnswers >= 0.8 &&
-    props.correctAnswers / props.totalAnswers < 1
-  ) {
-    text = (
-      <Box>
-        <Typography className={classes.typography}>Not bad!</Typography>
-        <Typography className={classes.typography}>
-          You answered correctly {props.correctAnswers} questions out of{" "}
-          {props.totalAnswers}.
-        </Typography>
-        <Typography className={classes.typography}>
-          Congratulations! Wanna try once more?
-        </Typography>
-      </Box>
-    );
-  }
-  if (props.correctAnswers / props.totalAnswers === 1) {
-    text = (
-      <Box>
-        <Typography className={classes.typography}>
-          Wow! Look, someone smart is here!
-        </Typography>
-        <Typography className={classes.typography}>
-          You answered correctly {props.correctAnswers} questions out of{" "}
-          {props.totalAnswers}.
-        </Typography>
-        <Typography className={classes.typography}>
-          Congratulations! Wanna try once more?
-        </Typography>
-      </Box>
-    );
-  }
+  const correct = (props.correctAnswers / props.totalAnswers) * 100;
+  const incorrect = 100 - (props.correctAnswers / props.totalAnswers) * 100;
 
   return (
     <Paper elevation={3} className={classes.paper}>
@@ -82,7 +36,51 @@ const Result = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box m={5}>{text}</Box>
+        <Box m={2} mt={3}>
+          <Typography variant="h4" align="center">
+            Not bad! You scored {props.score} points
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="center" alignItems="flex-end">
+          <Box m={1} mt={3}>
+            <Typography variant="h5" align="center">
+              {correct}% correct
+            </Typography>
+          </Box>
+          <Box m={1} mt={3}>
+            <Typography variant="h5" align="center">
+              {incorrect}% incorrect
+            </Typography>
+          </Box>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="flex-end"
+          sx={{ height: "300px" }}
+        >
+          <Box
+            m={1}
+            sx={{
+              width: "110px",
+              height: `${correct}%`,
+              backgroundColor: "#4db6ac",
+            }}
+          ></Box>
+          <Box
+            m={1}
+            sx={{
+              width: "110px",
+              height: `${incorrect}%`,
+              backgroundColor: "#f6a5c0",
+            }}
+          ></Box>
+        </Box>
+        <Box m={1} mt={3}>
+          <Typography variant="h5" align="center">
+            Would you like to try again?
+          </Typography>
+        </Box>
         <Box display="flex" justifyContent="center" alignItems="center">
           <Box p={1} mb={3}>
             <Button
@@ -92,6 +90,7 @@ const Result = (props) => {
               onClick={() => {
                 props.setTotalAnswers(0);
                 props.setCorrectAnswers(0);
+                props.setScore(0);
                 navigate("/start");
               }}
             >
@@ -106,6 +105,7 @@ const Result = (props) => {
               onClick={() => {
                 props.setTotalAnswers(0);
                 props.setCorrectAnswers(0);
+                props.setScore(0);
                 localStorage.removeItem("playerName");
                 navigate("/");
               }}
