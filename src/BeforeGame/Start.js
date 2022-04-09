@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Typography, Button, Paper, Box, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { categoriesList } from "./utils/utils";
+import { categoriesList } from "../utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   button: {

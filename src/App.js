@@ -5,12 +5,12 @@ import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { Grid, Box, Toolbar } from "@material-ui/core";
 
-import Appbar from "./Appbar";
-import Rules from "./Rules";
-import Welcome from "./Welcome";
-import Start from "./Start";
-import Board from "./Board";
-import Result from "./Result";
+import Appbar from "./Appbar/Appbar";
+import Rules from "./BeforeGame/Rules";
+import Welcome from "./BeforeGame/Welcome";
+import Start from "./BeforeGame/Start";
+import Board from "./Game/Board";
+import Result from "./Result/Result";
 
 const theme = createTheme({
   palette: {

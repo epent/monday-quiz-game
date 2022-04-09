@@ -13,10 +13,10 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
-import ProgressBar from "./ProgressBar";
+import { categoriesList, NUMBER_OF_QUESTIONS } from "../utils/utils";
+import ProgressBar from "./Progress/ProgressBar";
 import Timer from "./Timer";
-import images from "./images";
+import images from "../images";
 
 const Game = (props) => {
   const params = useParams();

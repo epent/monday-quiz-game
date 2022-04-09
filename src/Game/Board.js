@@ -5,8 +5,8 @@ import { Grid, Hidden } from "@material-ui/core";
 
 import Game from "./Game";
 import Timer from "./Timer";
-import ProgressList from "./ProgressList";
-import { NUMBER_OF_QUESTIONS } from "./utils/utils";
+import ProgressList from "./Progress/ProgressList";
+import { NUMBER_OF_QUESTIONS } from "../utils/utils";
 
 const Board = (props) => {
   const navigate = useNavigate();
