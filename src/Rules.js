@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Typography, Button, Paper, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { NUMBER_OF_QUESTIONS } from "./utils/utils";
+
 const useStyles = makeStyles((theme) => ({
   button: {
     "& > *": {
@@ -14,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fafafa",
     borderRadius: 10,
   },
-  box: {
+  flexbox: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -61,14 +64,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Rules = (props) => {
   const classes = useStyles();
-
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const playerName = localStorage.getItem("playerName");
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Box className={classes.box} flexDirection="column">
+      <Box className={classes.flexbox}>
         <Box m={3} mb={1}>
           <Typography className={classes.typographyBig} gutterBottom>
             Nice to meet you, {playerName}!
@@ -76,11 +78,11 @@ const Rules = (props) => {
         </Box>
         <Box m={3} mb={1}>
           <Typography className={classes.typographySmall} gutterBottom>
-            The game consists of 10 questions with different levels of
-            difficulty. For each correct answer you get points
+            The game consists of {NUMBER_OF_QUESTIONS} questions with different
+            levels of difficulty. For each correct answer you get points
           </Typography>
           <Box m={4}>
-            <Typography gutterBottom className={classes.colorLight}>
+            <Typography className={classes.colorLight} gutterBottom>
               Easy: 10 points
             </Typography>
             <Typography
@@ -90,7 +92,7 @@ const Rules = (props) => {
             >
               Medium: 20 points
             </Typography>
-            <Typography gutterBottom className={classes.colorDark}>
+            <Typography className={classes.colorDark} gutterBottom>
               Hard: 30 points
             </Typography>
           </Box>
@@ -102,11 +104,11 @@ const Rules = (props) => {
           <Button
             variant="contained"
             color="primary"
+            className={classes.button}
+            fullWidth
             onClick={() => {
               navigate("/start");
             }}
-            className={classes.button}
-            fullWidth
           >
             next
           </Button>

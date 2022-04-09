@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fafafa",
     borderRadius: 10,
   },
-  box: {
+  flexbox: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     [theme.breakpoints.up("xs")]: {
@@ -35,10 +36,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Welcome = (props) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
-
-  let navigate = useNavigate();
 
   const updateNameHandler = (event) => {
     setName(event.target.value);
@@ -76,9 +76,9 @@ const Welcome = (props) => {
           <Button
             variant="contained"
             color="secondary"
-            onClick={submitNameHandler}
             className={classes.button}
             disabled={name.length === 0 ? true : false}
+            onClick={submitNameHandler}
           >
             submit
           </Button>
@@ -89,7 +89,7 @@ const Welcome = (props) => {
 
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Box className={classes.box} flexDirection="column">
+      <Box className={classes.flexbox}>
         <Box p={3}>
           <Typography className={classes.typography} gutterBottom>
             Welcome dear friend! What's your name?

@@ -16,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fafafa",
     borderRadius: 10,
   },
-  box: {
+  flexbox: {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -42,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Start = (props) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const playerName = localStorage.getItem("playerName");
 
   const [category, setCategory] = useState(null);
-
-  let navigate = useNavigate();
 
   const categories = Object.keys(categoriesList).map((cat) => {
     return (
@@ -64,11 +65,9 @@ const Start = (props) => {
     );
   });
 
-  const playerName = localStorage.getItem("playerName");
-
   return (
     <Paper elevation={3} className={classes.paper}>
-      <Box className={classes.box} flexDirection="column">
+      <Box className={classes.flexbox}>
         <Box m={3} mb={1}>
           <Typography className={classes.typography} gutterBottom>
             {playerName}, choose category

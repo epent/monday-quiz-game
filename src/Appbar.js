@@ -25,7 +25,6 @@ const Appbar = (props) => {
               color="textPrimary"
               variant="button"
               onClick={() => {
-                props.setTotalAnswers(0);
                 props.setCorrectAnswers(0);
                 props.setScore(0);
                 if (localStorage.getItem("playerName")) {
@@ -45,7 +44,6 @@ const Appbar = (props) => {
               color="textPrimary"
               variant="button"
               onClick={() => {
-                props.setTotalAnswers(0);
                 props.setCorrectAnswers(0);
                 props.setScore(0);
                 props.setShowExitButton(false);

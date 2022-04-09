@@ -16,34 +16,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
 import ProgressBar from "./ProgressBar";
 import Timer from "./Timer";
-import {
-  general,
-  math,
-  books,
-  film,
-  geography,
-  history,
-  music,
-  sports,
-  videogames,
-} from "./images";
+import images from "./images";
 
 const Game = (props) => {
-  const [gameData, setGameData] = useState(null);
-
   const params = useParams();
 
-  let image;
+  const [gameData, setGameData] = useState(null);
 
-  if (params.categoryName === "General Knowledge") image = general;
-  if (params.categoryName === "Books") image = books;
-  if (params.categoryName === "Film") image = film;
-  if (params.categoryName === "Geography") image = geography;
-  if (params.categoryName === "History") image = history;
-  if (params.categoryName === "Mathematics") image = math;
-  if (params.categoryName === "Music") image = music;
-  if (params.categoryName === "Sports") image = sports;
-  if (params.categoryName === "Video Games") image = videogames;
+  const image = images[params.categoryName];
 
   const useStyles = makeStyles((theme) => ({
     button: {
@@ -131,30 +111,45 @@ const Game = (props) => {
     question: "",
     answers: [],
   };
-  if (gameData && props.questionCount !== NUMBER_OF_QUESTIONS) {
-    gameData[props.questionCount].incorrect_answers.forEach((answer) => {
-      questionData.answers.push(he.decode(answer));
-    });
+  const fillQuestionData = () => {
+    if (gameData && props.questionCount !== NUMBER_OF_QUESTIONS) {
+      const addIncorrectAnswers = () => {
+        gameData[props.questionCount].incorrect_answers.forEach((answer) => {
+          questionData.answers.push(he.decode(answer));
+        });
+      };
+      const addCorrectAnswer = () => {
+        const randomNum = Math.floor(Math.random() * 4);
 
-    const randomNum = Math.floor(Math.random() * 4);
-
-    questionData.answers.splice(
-      randomNum,
-      0,
-      he.decode(gameData[props.questionCount].correct_answer)
-    );
-
-    questionData.question = he.decode(gameData[props.questionCount].question);
-  }
+        questionData.answers.splice(
+          randomNum,
+          0,
+          he.decode(gameData[props.questionCount].correct_answer)
+        );
+      };
+      const addQuestion = () => {
+        questionData.question = he.decode(
+          gameData[props.questionCount].question
+        );
+      };
+      addIncorrectAnswers();
+      addCorrectAnswer();
+      addQuestion();
+    }
+  };
+  fillQuestionData();
 
   const answerButtons = questionData.answers.map((answer) => {
+    const isCorrect =
+      answer === he.decode(gameData[props.questionCount].correct_answer);
+
     return (
       <Button
         key={answer}
         className={
           !props.showCorrectAnswer
             ? classes.buttonPink
-            : answer === he.decode(gameData[props.questionCount].correct_answer)
+            : isCorrect
             ? classes.buttonGreen
             : classes.buttonGrey
         }
@@ -163,7 +158,7 @@ const Game = (props) => {
         onClick={() => {
           props.setShowCorrectAnswer(true);
           props.updateQuestionHandler(
-            answer === he.decode(gameData[props.questionCount].correct_answer),
+            isCorrect,
             gameData[props.questionCount].difficulty
           );
         }}
@@ -181,6 +176,33 @@ const Game = (props) => {
     >
       next
     </Button>
+  );
+
+  const points = (
+    <Box
+      sx={{
+        position: "absolute",
+      }}
+    >
+      <Slide direction="up" in={props.showPoints} mountOnEnter unmountOnExit>
+        <Box
+          p={1}
+          mb={1}
+          sx={{
+            backgroundColor: "#FFFFFF",
+            border: "2px solid #f6a5c0",
+            borderRadius: 15,
+            width: "100%",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <Typography variant="h5" align="center" color="secondary">
+            +{props.points}
+          </Typography>
+        </Box>
+      </Slide>
+    </Box>
   );
 
   return (
@@ -211,35 +233,7 @@ const Game = (props) => {
             </Typography>
           </Paper>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-          }}
-        >
-          <Slide
-            direction="up"
-            in={props.showAddScore}
-            mountOnEnter
-            unmountOnExit
-          >
-            <Box
-              p={1}
-              mb={1}
-              sx={{
-                backgroundColor: "#FFFFFF",
-                border: "2px solid #f6a5c0",
-                borderRadius: 15,
-                width: "100%",
-                position: "relative",
-                zIndex: 1,
-              }}
-            >
-              <Typography variant="h5" align="center" color="secondary">
-                +{props.addScore}
-              </Typography>
-            </Box>
-          </Slide>
-        </Box>
+        {points}
         <Box
           className={classes.button}
           display="flex"

@@ -1,61 +1,52 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
+import { Grid, Hidden } from "@material-ui/core";
 
 import Game from "./Game";
 import Timer from "./Timer";
-import Score from "./Score";
+import ProgressList from "./ProgressList";
 import { NUMBER_OF_QUESTIONS } from "./utils/utils";
 
 const Board = (props) => {
-  const [questionCount, setQuestionCount] = useState(0);
+  const navigate = useNavigate();
 
+  const [questionCount, setQuestionCount] = useState(0);
+  const [points, setPoints] = useState(0);
+  const [showPoints, setShowPoints] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-
-  const [scoreList, setScoreList] = useState(
+  const [progressList, setProgressList] = useState(
     Array.from({ length: 10 }, () => "empty")
   );
-  const [addScore, setAddScore] = useState(0);
-  const [showAddScore, setShowAddScore] = useState(false);
-
-  let navigate = useNavigate();
 
   const updateQuestionHandler = (correct, difficulty) => {
-    const updatedScoreList = [...scoreList];
+    let pointsRate;
+    difficulty === "easy"
+      ? (pointsRate = 10)
+      : difficulty === "medium"
+      ? (pointsRate = 20)
+      : (pointsRate = 30);
+
+    const updatedProgressList = [...progressList];
 
     if (correct) {
       props.setCorrectAnswers((prevState) => prevState + 1);
-      setShowAddScore(true);
+      props.setScore((prevState) => prevState + pointsRate);
+      setPoints(pointsRate);
+      setShowPoints(true);
 
-      updatedScoreList[questionCount] = "correct";
-      setScoreList(updatedScoreList);
-
-      if (difficulty === "easy") {
-        props.setScore((prevState) => prevState + 10);
-        setAddScore(10);
-      }
-      if (difficulty === "medium") {
-        props.setScore((prevState) => prevState + 20);
-        setAddScore(20);
-      }
-      if (difficulty === "hard") {
-        props.setScore((prevState) => prevState + 30);
-        setAddScore(30);
-      }
+      updatedProgressList[questionCount] = "correct";
     } else {
-      updatedScoreList[questionCount] = "wrong";
-      setScoreList(updatedScoreList);
+      updatedProgressList[questionCount] = "wrong";
     }
 
-    props.setTotalAnswers((prevState) => prevState + 1);
+    setProgressList(updatedProgressList);
     setShowNextButton(false);
 
     setTimeout(() => {
       setShowCorrectAnswer(false);
-      setShowAddScore(false);
+      setShowPoints(false);
       setQuestionCount((prevState) => prevState + 1);
 
       if (questionCount === NUMBER_OF_QUESTIONS - 1) {
@@ -74,8 +65,8 @@ const Board = (props) => {
           setShowNextButton={setShowNextButton}
           setShowCorrectAnswer={setShowCorrectAnswer}
           showCorrectAnswer={showCorrectAnswer}
-          addScore={addScore}
-          showAddScore={showAddScore}
+          points={points}
+          showPoints={showPoints}
         />
       </Grid>
       <Hidden smDown>
@@ -88,7 +79,10 @@ const Board = (props) => {
         </Grid>
       </Hidden>
       <Grid item xs={12}>
-        <Score scoreList={scoreList} questionCount={questionCount} />
+        <ProgressList
+          progressList={progressList}
+          questionCount={questionCount}
+        />
       </Grid>
     </Grid>
   );
