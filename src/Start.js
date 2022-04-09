@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Typography, Button, Paper, Box, Link } from "@material-ui/core";
@@ -71,11 +71,7 @@ const Start = (props) => {
       <Box className={classes.box} flexDirection="column">
         <Box m={3} mb={1}>
           <Typography className={classes.typography} gutterBottom>
-            {playerName}, choose category and press{" "}
-            <Box component="span" variant="h4" color="secondary.main">
-              START
-            </Box>{" "}
-            to play the game.
+            {playerName}, choose category
           </Typography>
         </Box>
         <Box m={2} display="flex" flexDirection="column" alignItems="center">

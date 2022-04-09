@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import Appbar from "./Appbar";
+import Rules from "./Rules";
 import Welcome from "./Welcome";
 import Start from "./Start";
 import Board from "./Board";
@@ -31,13 +32,14 @@ const theme = createTheme({
 function App() {
   const [totalAnswers, setTotalAnswers] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-  // const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0);
   const [showExit, setShowExit] = useState(false);
   const [showBack, setShowBack] = useState(false);
 
   const routes = (
     <Routes>
       <Route path="/" element={<Welcome setShowExit={setShowExit} />} />
+      <Route path="/rules" element={<Rules />} />
       <Route path="/start" element={<Start setShowBack={setShowBack} />} />
       <Route
         path="/game/:categoryName"
@@ -45,7 +47,7 @@ function App() {
           <Board
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
-            // setScore={setScore}
+            setScore={setScore}
           />
         }
       />
@@ -55,10 +57,10 @@ function App() {
           <Result
             totalAnswers={totalAnswers}
             correctAnswers={correctAnswers}
-            // score={score}
+            score={score}
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
-            // setScore={setScore}
+            setScore={setScore}
           />
         }
       />
@@ -72,7 +74,7 @@ function App() {
           <Appbar
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
-            // setScore={setScore}
+            setScore={setScore}
             setShowExit={setShowExit}
             showExit={showExit}
             setShowBack={setShowBack}
