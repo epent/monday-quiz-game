@@ -20,15 +20,15 @@ const Score = (props) => {
 
   const clouds = props.scoreList.map((elm, i) => {
     return elm === "correct" ? (
-      <Box className={classes.box}>
+      <Box key={elm+i} className={classes.box}>
         <CheckCircleIcon style={{ fontSize: 40 }} color="secondary" />
       </Box>
     ) : elm === "wrong" ? (
-      <Box className={classes.box}>
+      <Box key={elm+i} className={classes.box}>
         <CancelIcon style={{ fontSize: 40 }} color="secondary" />
       </Box>
     ) : (
-      <Box className={classes.box}>
+      <Box key={elm+i} className={classes.box}>
         <RadioButtonUncheckedIcon
           style={{ fontSize: 40 }}
           color={props.questionCount === i ? "primary" : "secondary"}
