@@ -83,6 +83,7 @@ const Result = (props) => {
               onClick={() => {
                 props.setCorrectAnswers(0);
                 props.setScore(0);
+                props.setShowBackButton(false);
                 navigate("/start");
               }}
             >

@@ -50,6 +50,7 @@ const Board = (props) => {
       setQuestionCount((prevState) => prevState + 1);
 
       if (questionCount === NUMBER_OF_QUESTIONS - 1) {
+        props.setShowBackButton(false);
         navigate("/result");
       }
     }, 1000);

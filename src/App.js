@@ -43,7 +43,11 @@ function App() {
       <Route
         path="/game/:categoryName"
         element={
-          <Board setCorrectAnswers={setCorrectAnswers} setScore={setScore} />
+          <Board
+            setCorrectAnswers={setCorrectAnswers}
+            setScore={setScore}
+            setShowBackButton={setShowBackButton}
+          />
         }
       />
       <Route
