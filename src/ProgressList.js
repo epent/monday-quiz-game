@@ -15,20 +15,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Score = (props) => {
+const ProgressList = (props) => {
   const classes = useStyles();
 
-  const clouds = props.scoreList.map((elm, i) => {
+  const clouds = props.progressList.map((elm, i) => {
     return elm === "correct" ? (
-      <Box key={elm+i} className={classes.box}>
+      <Box key={elm + i} className={classes.box}>
         <CheckCircleIcon style={{ fontSize: 40 }} color="secondary" />
       </Box>
     ) : elm === "wrong" ? (
-      <Box key={elm+i} className={classes.box}>
+      <Box key={elm + i} className={classes.box}>
         <CancelIcon style={{ fontSize: 40 }} color="secondary" />
       </Box>
     ) : (
-      <Box key={elm+i} className={classes.box}>
+      <Box key={elm + i} className={classes.box}>
         <RadioButtonUncheckedIcon
           style={{ fontSize: 40 }}
           color={props.questionCount === i ? "primary" : "secondary"}
@@ -51,4 +51,4 @@ const Score = (props) => {
   );
 };
 
-export default Score;
+export default ProgressList;
