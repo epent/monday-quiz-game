@@ -31,17 +31,21 @@ const theme = createTheme({
 function App() {
   const [totalAnswers, setTotalAnswers] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
+  // const [score, setScore] = useState(0);
+  const [showExit, setShowExit] = useState(false);
+  const [showBack, setShowBack] = useState(false);
 
   const routes = (
     <Routes>
-      <Route path="/" element={<Welcome />} />
-      <Route path="/start" element={<Start />} />
+      <Route path="/" element={<Welcome setShowExit={setShowExit} />} />
+      <Route path="/start" element={<Start setShowBack={setShowBack} />} />
       <Route
         path="/game/:categoryName"
         element={
           <Board
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
+            // setScore={setScore}
           />
         }
       />
@@ -51,8 +55,10 @@ function App() {
           <Result
             totalAnswers={totalAnswers}
             correctAnswers={correctAnswers}
+            // score={score}
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
+            // setScore={setScore}
           />
         }
       />
@@ -66,6 +72,11 @@ function App() {
           <Appbar
             setTotalAnswers={setTotalAnswers}
             setCorrectAnswers={setCorrectAnswers}
+            // setScore={setScore}
+            setShowExit={setShowExit}
+            showExit={showExit}
+            setShowBack={setShowBack}
+            showBack={showBack}
           />
         </Grid>
         <Grid item xs={12}>

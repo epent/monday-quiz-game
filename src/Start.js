@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Typography, Button, Paper, Box, Link } from "@material-ui/core";
@@ -86,6 +86,7 @@ const Start = (props) => {
             variant="contained"
             color="primary"
             onClick={() => {
+              props.setShowBack(true);
               navigate(`/game/${category}`);
             }}
             className={classes.button}
