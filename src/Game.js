@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import { Typography, Button, Paper, Box, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 import { categoriesList, NUMBER_OF_QUESTIONS } from "./utils/utils";
 import ProgressBar from "./ProgressBar";
@@ -49,6 +50,15 @@ const Game = (props) => {
         marginTop: theme.spacing(2),
       },
     },
+    buttonGreen: {
+      backgroundColor: "#6fbf73",
+    },
+    buttonGrey: {
+      backgroundColor: "#90a4ae",
+    },
+    buttonPink: {
+      backgroundColor: "#f6a5c0",
+    },
     paper: {
       backgroundImage: `url(${image})`,
       backgroundRepeat: "repeat",
@@ -88,7 +98,7 @@ const Game = (props) => {
       const response = await axios.get(
         `https://opentdb.com/api.php?amount=10&category=${
           categoriesList[params.categoryName]
-        }`
+        }&type=multiple`
       );
       const data = response.data.results;
 
@@ -108,9 +118,7 @@ const Game = (props) => {
       questionData.answers.push(he.decode(answer));
     });
 
-    let max;
-    questionData.answers.length > 1 ? (max = 4) : (max = 2);
-    const randomNum = Math.floor(Math.random() * max);
+    const randomNum = Math.floor(Math.random() * 4);
 
     questionData.answers.splice(
       randomNum,
@@ -121,21 +129,31 @@ const Game = (props) => {
     questionData.question = he.decode(gameData[props.questionCount].question);
   }
 
+  const AnswerButton = withStyles({})(Button);
+
   const answerButtons = questionData.answers.map((answer) => {
     return (
-      <Button
+      <AnswerButton
         key={answer}
-        variant="contained"
-        color="secondary"
-        size="large"
-        onClick={() =>
-          props.updateQuestionHandler(
-            answer === he.decode(gameData[props.questionCount].correct_answer)
-          )
+        className={
+          !props.showCorrectAnswer
+            ? classes.buttonPink
+            : answer === he.decode(gameData[props.questionCount].correct_answer)
+            ? classes.buttonGreen
+            : classes.buttonGrey
         }
+        variant="contained"
+        size="large"
+        onClick={() => {
+          props.setShowCorrectAnswer(true);
+          props.updateQuestionHandler(
+            answer === he.decode(gameData[props.questionCount].correct_answer),
+            gameData[props.questionCount].difficulty
+          );
+        }}
       >
         {answer}
-      </Button>
+      </AnswerButton>
     );
   });
 

@@ -13,6 +13,7 @@ const Board = (props) => {
   const [questionCount, setQuestionCount] = useState(0);
 
   const [showNextButton, setShowNextButton] = useState(false);
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
 
   const [scoreList, setScoreList] = useState(
     Array.from({ length: 10 }, () => "empty")
@@ -20,7 +21,7 @@ const Board = (props) => {
 
   let navigate = useNavigate();
 
-  const updateQuestionHandler = (correct) => {
+  const updateQuestionHandler = (correct, difficulty) => {
     const updatedScoreList = [...scoreList];
 
     if (correct) {
@@ -28,14 +29,24 @@ const Board = (props) => {
 
       updatedScoreList[questionCount] = "correct";
       setScoreList(updatedScoreList);
+
+      // difficulty === "easy"
+      //   ? props.setScore((prevState) => prevState + 10)
+      //   : difficulty === "medium"
+      //   ? props.setScore((prevState) => prevState + 20)
+      //   : props.setScore((prevState) => prevState + 30);
     } else {
       updatedScoreList[questionCount] = "wrong";
       setScoreList(updatedScoreList);
     }
 
     props.setTotalAnswers((prevState) => prevState + 1);
-    setQuestionCount((prevState) => prevState + 1);
     setShowNextButton(false);
+
+    setTimeout(() => {
+      setShowCorrectAnswer(false);
+      setQuestionCount((prevState) => prevState + 1);
+    }, 2000);
 
     if (questionCount === NUMBER_OF_QUESTIONS - 1) {
       navigate("/result");
@@ -50,10 +61,12 @@ const Board = (props) => {
           updateQuestionHandler={updateQuestionHandler}
           showNextButton={showNextButton}
           setShowNextButton={setShowNextButton}
+          setShowCorrectAnswer={setShowCorrectAnswer}
+          showCorrectAnswer={showCorrectAnswer}
         />
       </Grid>
       <Hidden smDown>
-        <Grid item xs={0} md={3} sx={{ height: "100%" }}>
+        <Grid item  md={3} sx={{ height: "100%" }}>
           <Timer
             startTimer={questionCount}
             setShowNextButton={setShowNextButton}
