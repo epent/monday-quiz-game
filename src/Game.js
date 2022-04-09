@@ -97,6 +97,18 @@ const Game = (props) => {
         marginTop: theme.spacing(3),
       },
     },
+    difficulty: {
+      textAlign: "center",
+      color: "#f6a5c0",
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "18px",
+        marginTop: theme.spacing(1),
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "20px",
+        marginTop: theme.spacing(2),
+      },
+    },
   }));
   const classes = useStyles();
 
@@ -192,6 +204,11 @@ const Game = (props) => {
       >
         <Box className={classes.typographyBox}>
           <Paper elevation={0} className={classes.typographyPaper}>
+            {gameData && (
+              <Typography className={classes.difficulty}>
+                Difficulty: {gameData[props.questionCount].difficulty}
+              </Typography>
+            )}
             <Typography className={classes.typography} color="primary">
               {questionData.question}
             </Typography>
