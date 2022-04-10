@@ -52,6 +52,11 @@ const Game = (props) => {
     },
     buttonPink: {
       backgroundColor: "#f6a5c0",
+      [theme.breakpoints.down("sm")]: {
+        "&:hover": {
+          backgroundColor: "#f6a5c0",
+        },
+      },
     },
     paper: {
       backgroundImage: `url(${image})`,
