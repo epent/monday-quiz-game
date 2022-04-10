@@ -22,7 +22,6 @@ const Game = (props) => {
   const params = useParams();
 
   const [gameData, setGameData] = useState(null);
-  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [correctAnswerPlace, setCorrectAnswerPlace] = useState();
 
   const image = images[params.categoryName];
@@ -163,7 +162,7 @@ const Game = (props) => {
       <Button
         key={answer}
         className={
-          !showCorrectAnswer
+          !props.showCorrectAnswer
             ? classes.buttonPink
             : isCorrect
             ? classes.buttonGreen
@@ -172,14 +171,11 @@ const Game = (props) => {
         variant="contained"
         size="large"
         onClick={() => {
-          setShowCorrectAnswer(true);
+          props.setShowCorrectAnswer(true);
           props.updateQuestionHandler(
             isCorrect,
             gameData[props.questionCount].difficulty
           );
-          setTimeout(() => {
-            setShowCorrectAnswer(false);
-          }, 1000);
         }}
       >
         {answer}

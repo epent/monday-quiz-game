@@ -14,6 +14,7 @@ const Board = (props) => {
   const [questionCount, setQuestionCount] = useState(0);
   const [points, setPoints] = useState(0);
   const [showPoints, setShowPoints] = useState(false);
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
   const [progressList, setProgressList] = useState(
     Array.from({ length: 10 }, () => "empty")
@@ -47,6 +48,7 @@ const Board = (props) => {
     setTimeout(() => {
       setShowPoints(false);
       setQuestionCount((prevState) => prevState + 1);
+      setShowCorrectAnswer(false);
 
       if (questionCount === NUMBER_OF_QUESTIONS - 1) {
         props.setShowBackButton(false);
@@ -65,6 +67,8 @@ const Board = (props) => {
           setShowNextButton={setShowNextButton}
           points={points}
           showPoints={showPoints}
+          setShowCorrectAnswer={setShowCorrectAnswer}
+          showCorrectAnswer={showCorrectAnswer}
         />
       </Grid>
       <Hidden smDown>
