@@ -23,6 +23,7 @@ const Game = (props) => {
 
   const [gameData, setGameData] = useState(null);
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
+  const [correctAnswerPlace, setCorrectAnswerPlace] = useState();
 
   const image = images[params.categoryName];
 
@@ -114,6 +115,11 @@ const Game = (props) => {
     fetchData();
   }, [params.categoryName]);
 
+  useEffect(() => {
+    const randomNum = Math.floor(Math.random() * 4);
+    setCorrectAnswerPlace(randomNum);
+  }, [props.questionCount]);
+
   const questionData = {
     question: "",
     answers: [],
@@ -126,10 +132,8 @@ const Game = (props) => {
         });
       };
       const addCorrectAnswer = () => {
-        const randomNum = Math.floor(Math.random() * 4);
-
         questionData.answers.splice(
-          randomNum,
+          correctAnswerPlace,
           0,
           he.decode(gameData[props.questionCount].correct_answer)
         );
