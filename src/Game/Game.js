@@ -22,6 +22,7 @@ const Game = (props) => {
   const params = useParams();
 
   const [gameData, setGameData] = useState(null);
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
 
   const image = images[params.categoryName];
 
@@ -38,9 +39,15 @@ const Game = (props) => {
     },
     buttonGreen: {
       backgroundColor: "#6fbf73",
+      "&:hover": {
+        backgroundColor: "#6fbf73",
+      },
     },
     buttonGrey: {
       backgroundColor: "#90a4ae",
+      "&:hover": {
+        backgroundColor: "#90a4ae",
+      },
     },
     buttonPink: {
       backgroundColor: "#f6a5c0",
@@ -147,7 +154,7 @@ const Game = (props) => {
       <Button
         key={answer}
         className={
-          !props.showCorrectAnswer
+          !showCorrectAnswer
             ? classes.buttonPink
             : isCorrect
             ? classes.buttonGreen
@@ -156,11 +163,14 @@ const Game = (props) => {
         variant="contained"
         size="large"
         onClick={() => {
-          props.setShowCorrectAnswer(true);
+          setShowCorrectAnswer(true);
           props.updateQuestionHandler(
             isCorrect,
             gameData[props.questionCount].difficulty
           );
+          setTimeout(() => {
+            setShowCorrectAnswer(false);
+          }, 1000);
         }}
       >
         {answer}
