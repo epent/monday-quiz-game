@@ -15,7 +15,6 @@ const Board = (props) => {
   const [points, setPoints] = useState(0);
   const [showPoints, setShowPoints] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
-  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [progressList, setProgressList] = useState(
     Array.from({ length: 10 }, () => "empty")
   );
@@ -46,7 +45,6 @@ const Board = (props) => {
     props.setTotalScore((prevState) => prevState + pointsRate);
 
     setTimeout(() => {
-      setShowCorrectAnswer(false);
       setShowPoints(false);
       setQuestionCount((prevState) => prevState + 1);
 
@@ -65,8 +63,6 @@ const Board = (props) => {
           updateQuestionHandler={updateQuestionHandler}
           showNextButton={showNextButton}
           setShowNextButton={setShowNextButton}
-          setShowCorrectAnswer={setShowCorrectAnswer}
-          showCorrectAnswer={showCorrectAnswer}
           points={points}
           showPoints={showPoints}
         />
