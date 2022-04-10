@@ -43,6 +43,7 @@ const Board = (props) => {
 
     setProgressList(updatedProgressList);
     setShowNextButton(false);
+    props.setTotalScore((prevState) => prevState + pointsRate);
 
     setTimeout(() => {
       setShowCorrectAnswer(false);

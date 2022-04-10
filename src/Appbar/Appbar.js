@@ -27,6 +27,7 @@ const Appbar = (props) => {
               onClick={() => {
                 props.setCorrectAnswers(0);
                 props.setScore(0);
+                props.setTotalScore(0);
                 if (localStorage.getItem("playerName")) {
                   props.setShowBackButton(false);
                   navigate("/start");
@@ -46,6 +47,7 @@ const Appbar = (props) => {
               onClick={() => {
                 props.setCorrectAnswers(0);
                 props.setScore(0);
+                props.setTotalScore(0);
                 props.setShowExitButton(false);
                 props.setShowBackButton(false);
                 localStorage.removeItem("playerName");

@@ -83,6 +83,7 @@ const Result = (props) => {
               onClick={() => {
                 props.setCorrectAnswers(0);
                 props.setScore(0);
+                props.setTotalScore(0);
                 props.setShowBackButton(false);
                 navigate("/start");
               }}
@@ -98,6 +99,7 @@ const Result = (props) => {
               onClick={() => {
                 props.setCorrectAnswers(0);
                 props.setScore(0);
+                props.setTotalScore(0);
                 props.setShowBackButton(false);
                 localStorage.removeItem("playerName");
                 navigate("/");

@@ -26,6 +26,7 @@ const theme = createTheme({
 function App() {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [score, setScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
   const [showExitButton, setShowExitButton] = useState(false);
   const [showBackButton, setShowBackButton] = useState(false);
 
@@ -46,6 +47,7 @@ function App() {
           <Board
             setCorrectAnswers={setCorrectAnswers}
             setScore={setScore}
+            setTotalScore={setTotalScore}
             setShowBackButton={setShowBackButton}
           />
         }
@@ -56,8 +58,10 @@ function App() {
           <Result
             correctAnswers={correctAnswers}
             score={score}
+            totalScore={totalScore}
             setCorrectAnswers={setCorrectAnswers}
             setScore={setScore}
+            setTotalScore={setTotalScore}
             setShowBackButton={setShowBackButton}
           />
         }
@@ -72,6 +76,7 @@ function App() {
           <Appbar
             setCorrectAnswers={setCorrectAnswers}
             setScore={setScore}
+            setTotalScore={setTotalScore}
             setShowExitButton={setShowExitButton}
             showExitButton={showExitButton}
             setShowBackButton={setShowBackButton}
