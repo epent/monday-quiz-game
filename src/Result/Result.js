@@ -17,6 +17,24 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  typography1: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "23px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "30px",
+    },
+  },
+  typography2: {
+    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "20px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "25px",
+    },
+  },
 }));
 
 const Result = (props) => {
@@ -30,7 +48,7 @@ const Result = (props) => {
   const resultHeaders = [correct, incorrect].map((result, i) => {
     return (
       <Box m={1} mt={3}>
-        <Typography variant="h5" align="center">
+        <Typography className={classes.typography2} gutterBottom>
           {result}% {i === 0 ? "correct" : "incorrect"}
         </Typography>
       </Box>
@@ -42,7 +60,7 @@ const Result = (props) => {
       <Box
         m={1}
         sx={{
-          width: "110px",
+          width: "100px",
           height: i === 0 ? `${correct}%` : `${incorrect}%`,
           backgroundColor: color,
         }}
@@ -50,12 +68,34 @@ const Result = (props) => {
     );
   });
 
+  const playerName = localStorage.getItem("playerName");
+
+  let cheeringPhrase1, cheeringPhrase2, finishPhrase;
+
+  if (props.score === props.totalScore) {
+    cheeringPhrase1 = "Wow!";
+    cheeringPhrase2 = `Congratulations, ${playerName}!`;
+    finishPhrase = "Would you like to challenge yourself again?";
+  } else {
+    cheeringPhrase1 = "Not bad!";
+    cheeringPhrase2 = `But you can do better, ${playerName} :)`;
+    finishPhrase = "Would you like to try again?";
+  }
+
   return (
     <Paper elevation={3} className={classes.paper}>
       <Box className={classes.box}>
-        <Box m={2} mt={3}>
-          <Typography variant="h4" align="center">
-            Not bad! You scored {props.score} points
+        <Box mx={2} mt={3}>
+          <Typography className={classes.typography1}>
+            {cheeringPhrase1} You scored{" "}
+            <Box component="span" color="secondary.main">
+              {props.score}
+            </Box>{" "}
+            out of{" "}
+            <Box component="span" color="primary.main">
+              {props.totalScore}
+            </Box>{" "}
+            points. {cheeringPhrase2}
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="flex-end">
@@ -65,13 +105,13 @@ const Result = (props) => {
           display="flex"
           justifyContent="center"
           alignItems="flex-end"
-          sx={{ height: "300px" }}
+          sx={{ height: "250px" }}
         >
           {resultBars}
         </Box>
         <Box m={1} mt={3}>
-          <Typography variant="h5" align="center">
-            Would you like to try again?
+          <Typography className={classes.typography2}>
+            {finishPhrase}
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center" alignItems="center">
